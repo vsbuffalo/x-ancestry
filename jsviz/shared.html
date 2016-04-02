@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script src="d3.v3.min.js" charset="utf-8"></script>
+    <style type="text/css" media="screen">
+      .chrom-female {
+        fill: #ddd;
+      }
+      .chrom-male {
+        fill: #bbb;
+      }
+      .chrom-bg {
+        //fill: #8856a7;
+        fill: #fff;
+      }
+      .mum-segment {
+        fill: #D4151D;
+      }
+      .dad-segment {
+        fill: #3790BE;
+      }
+    </style>
+    <title></title>
+  </head>
+  <body>
+    <div id="xshared"></div>
+  </body>
+  <script src="sharedsegments2.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+   //config.tight = true;
+    var human_x = {
+      'nancestors': function(k) {
+        return (Math.pow(φ, k+2) - Math.pow(ψ, k+2))/Math.sqrt(5);
+      },
+      'genlen': 1.96,
+    };
+
+    var single_chrom = {
+      'nancestors': function(k) {
+        return Math.pow(2, k);
+      },
+      'genlen': 5,
+    }
+    d3.json("x.json", function(data) {
+      var config = single_chrom;
+      config.genlen = data.genlen;
+      if (data.type == 'x') {
+        config = human_x;
+        //config.tight = true;
+      }
+      config.animate = true;
+      // maxgen: also change in sharedsegments2.js, filter()
+      config.maxgen = 4; //d3.max(data.sims[0].map(function(d) { return d.gen; }));
+      var drawShared = segmentsTree(config);
+      d3.select("#xshared")
+        .datum(data.sims[0])
+        .call(drawShared);
+
+    d3.select("svg").append('text').attr({'x': 46, 'y': 426, 'font-size': '30px', 'fill':"#303030", 'font-weight':'700', 'font-family':'sans-serif'}).text('B');
+    });
+  </script>
+</html>

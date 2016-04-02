@@ -1,0 +1,44 @@
+graph G {
+    F_0_0_0 [texlbl="$F_{0, 0}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    F_1_1_1 [texlbl="$F_{1, 1}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_12_1_0 [texlbl="$M_{1, 0}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_2_2_2 [texlbl="$F_{2, 2}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_8_2_1 [texlbl="$M_{2, 1}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_13_2_1 [texlbl="$F_{2, 1}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    F_3_3_3 [texlbl="$F_{3, 3}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_6_3_2 [texlbl="$M_{3, 2}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_9_3_2 [texlbl="$F_{3, 2}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    F_14_3_2 [texlbl="$F_{3, 2}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_17_3_1 [texlbl="$M_{3, 1}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_4_4_4 [texlbl="$F_{4, 4}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_5_4_3 [texlbl="$M_{4, 3}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_7_4_3 [texlbl="$F_{4, 3}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    F_10_4_3 [texlbl="$F_{4, 3}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_11_4_2 [texlbl="$M_{4, 2}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_15_4_3 [texlbl="$F_{4, 3}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    M_16_4_2 [texlbl="$M_{4, 2}$",  fixedsize=true, penwidth=1, shape=square, color="#888888"]
+    F_18_4_2 [texlbl="$F_{4, 2}$",  fixedsize=true, penwidth=1, shape=circle, style=filled, fillcolor="#B2C2F0", color="#888888"]
+    F_1_1_1 -- F_0_0_0
+    M_12_1_0 -- F_0_0_0
+    F_2_2_2 -- F_1_1_1
+    M_8_2_1 -- F_1_1_1
+    F_13_2_1 -- M_12_1_0
+    F_3_3_3 -- F_2_2_2
+    M_6_3_2 -- F_2_2_2
+    F_9_3_2 -- M_8_2_1
+    F_14_3_2 -- F_13_2_1
+    M_17_3_1 -- F_13_2_1
+    F_4_4_4 -- F_3_3_3
+    M_5_4_3 -- F_3_3_3
+    F_7_4_3 -- M_6_3_2
+    F_10_4_3 -- F_9_3_2
+    M_11_4_2 -- F_9_3_2
+    F_15_4_3 -- F_14_3_2
+    M_16_4_2 -- F_14_3_2
+    F_18_4_2 -- M_17_3_1
+{rank=same;     F_0_0_0}
+{rank=same;     F_1_1_1;     M_12_1_0}
+{rank=same;     F_2_2_2;     M_8_2_1;     F_13_2_1}
+{rank=same;     F_3_3_3;     M_6_3_2;     F_9_3_2;     F_14_3_2;     M_17_3_1}
+{rank=same;     F_4_4_4;     M_5_4_3;     F_7_4_3;     F_10_4_3;     M_11_4_2;     F_15_4_3;     M_16_4_2;     F_18_4_2}
+}
