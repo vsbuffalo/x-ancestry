@@ -1,6 +1,9 @@
 ## Simulation code, simulated data sets, and analysis for *A Genealogical Look at Shared Ancestry on the X Chromosome*
 
-This repository contains the 
+This repository contains the code and other materials for our paper **A
+Genealogical Look at Shared Ancestry on the X Chromosome*. See the [preprint on
+bioRxiv](http://biorxiv.org/content/early/2016/04/03/046912).
+
 
 ## Contents
 
