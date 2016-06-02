@@ -177,7 +177,7 @@ p <- p + xlim(c(0, 1.95))
 dfxl_binned <-  binlens(dfxl)
 # plot_sims(dfxl_binned, dfxl_analytic, gens=2:7, xcol='mid', ycol='prob')
 plot_sims(dfxl_binned, dfxl_analytic, gens=2:7, cex=12, xcol='mid', ycol='prob',
-          xlab="length of IBD segments", ylab="density",
+          xlab="length of IBD segments (Morgans)", ylab="density",
           filename=graphdir("x-ancestor-blocklens"))
 
 
@@ -387,12 +387,12 @@ dfxhcl_analytic <- fit_analytic(seq(0, 1.95, by=0.01), 2:7,
 
 plot_sims(binlens(dfxhcl, breaks=12), dfxhcl_analytic, 
           gen=2:7, xcol='mid', ycol='prob', xrng=c(0, 2),  # smin=TRUE,
-          xlab="length of IBD segments", ylab="density")
+          xlab="length of IBD segments (Morgans)", ylab="density")
 
 plot_sims(binlens(dfxhcl, breaks=12), dfxhcl_analytic, 
           gen=2:7, xcol='mid', ycol='prob', cex=12, xrng=c(0, 2),
           smin=0.1,
-          xlab="length of IBD segments", ylab="density",
+          xlab="length of IBD segments (Morgans)", ylab="density",
           filename=graphdir("x-halfcousins-blocklens"))
 
 ## Full Cousins

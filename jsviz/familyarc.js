@@ -184,7 +184,7 @@ var plotFamilyArc = function(data, genlen, type, width, height) {
        .enter()
        .append("path")
        .attr("d", function(d) { return d(); })
-       .style("fill", "rgb(240, 240, 240)");
+       .style("fill", "rgb(220, 220, 220)");
     // these are white background arcs for individuals
     // note that the sims data.json file garuantees that these will
     // contian all individuals in the X

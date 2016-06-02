@@ -176,7 +176,7 @@ def ancestry2dot(tree):
         nid = '    %s_%d_%d_%d' % (sex, node.id, node.gen, node.xnrec)
         style = "shape=square" if node.sex else 'shape=circle'
         if node.is_x:
-            style += ', style=filled, fillcolor="#DDDDDD"'
+            style += ', style=filled, fillcolor="#DCDCDC"'
         if node.is_x and node.child != -1:
             label = 'label="%d"' % node.xnrec
         else:

@@ -300,7 +300,7 @@ rms <- function(k) seq(floor(k/2), k)
 rms_sharedanc <- function(k, fullcousins=FALSE, shared_ancestor=NULL,
                           two_daughters=FALSE) {
   if (fullcousins)
-    return(2 + seq(2*floor((k-2)/2), 2*(k-2)))
+    return(2 + seq(2*floor((k-2)/2), 2*k-2))
   if (is.null(shared_ancestor))
     return(seq(floor((2*k-1)/2), 2*k-1))
   if (shared_ancestor == 'f' && !two_daughters)
