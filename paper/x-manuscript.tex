@@ -174,11 +174,11 @@ kin-selection models involving the X chromosome
   \centering
   \includegraphics[width=\textwidth]{images/x-rm-tree.eps}
 
-  \caption{An example genealogy back five generations with the embedded X
-    genealogy. Males are depicted as squares and females as circles.
-    Individuals in the X genealogy are shaded gray while unshaded individuals
-    are ancestors that are not X ancestors. Each X ancestor is labeled with the
-  number of recombinational meioses to the present-day female.}
+  \caption{A genealogy back five generations with the embedded X genealogy.
+    Males are depicted as squares and females as circles.  Individuals in the X
+    genealogy are shaded gray while unshaded individuals are ancestors that are
+    not X ancestors. Each X ancestor is labeled with the number of
+  recombinational meioses to the present-day female.}
   \label{fig:x-rm-tree}
 \end{figure}
 
@@ -343,13 +343,13 @@ in X genealogies.
       generations.  Each arc is an ancestor, with female ancestors colored red,
       and male ancestors colored blue. The transparency of each arc reflects
       the genetic contribution of this ancestor to the present-day female.
-      White arcs correspond to an X genealogical ancestor that shares no
-      genetic material with the present-day female, and gray arcs are
-      genealogical ancestors that are not X ancestors. B: The X segments of the
-      simulation in (A), back five generations.  The maternal X lineage's
-      segments are colored red, and the paternal X segments are colored blue. A
-      male ancestor's sex chromosomes are colored dark gray (and include the Y)
-    and a female ancestor's sex chromosomes are colored light gray.}
+      White arcs correspond X genealogical ancestors that share no genetic
+      material with the present-day female, and gray arcs are genealogical
+      ancestors that are not X ancestors. B: The X segments of the simulation
+      in (A), back five generations.  The maternal X lineage's segments are
+      colored red, and the paternal X segments are colored blue. A male
+      ancestor's sex chromosomes are colored dark gray (and include the Y) and
+    a female ancestor's sex chromosomes are colored light gray.}
 
     \label{fig:x-arc}
 
@@ -509,7 +509,7 @@ of recombination events, this quantity is essential to our further derivations.
     meioses (each diagonal, labeled at base of triangle) for a generation $k$
     (each row). This is a modified version of Pascal's triangle, encoding the
     number of recombinational meioses as the binomial coefficient ${r + 1
-    \choose k - r}$.  Each value is further broken down into the number of
+    \choose k - r}$. Each value is further decomposed into the number of
     recombinational meioses from the female (red value, upper left) and male
     (blue value, upper right) lineages. Each black value is calculated by adding
     the black number to the left in the row above (the number of
@@ -1098,15 +1098,13 @@ two female half-cousins sharing an X ancestor but not having any X segments IBD
 by replacing $P(\text{X ancestor} \;|\; N = 0)$ with equation
 \eqref{eq:prob-n-half-cousins}, and replacing $P(\text{X ancestor})$ with
 $P(\text{shared X ancestor})$ which is given by equation
-\eqref{eq:prob-shared-x-ancestor}, and plotted in Figure \ref{fig:prob-xanx-n0}
+\eqref{eq:prob-shared-x-ancestor}, and plotted in Figure \ref{fig:prob-xanc-n0}
 (blue lines). We also plot the prior distributions to show the answer if no
-information about the X chromosome was observed. In both cases, the lack of
-sharing on the X chromosome does narrow the field of ancestors, making those
-who are not X genealogical ancestors more likely, beyond our prior. This is
-especially true for close relationships ($k<5$), where the X is likely to be
-shared if the ancestor was an X genealogical ancestor. Therefore not sharing X
-segments with ancestors (or cousins) is informative about genealogical
-relationships.
+information about the X chromosome was observed. In both cases, observing zero
+shared segments on the X chromosome makes it more likely that a shared ancestor
+was not a shared X ancestor. This additional information is strongest---as
+compared to the prior---for close relationships ($k<5$), where segments on the
+X are likely to be shared if the ancestor was an X genealogical ancestor. 
 
 Additionally, X IBD segments carry information about genealogical details that
 are not possible considering autosome IBD segments alone. While IBD autosome
@@ -1167,20 +1165,23 @@ little information over the prior about the relationship between the cousins,
 as sharing zero segments is the norm. In each case, a posterior distribution
 over the number of females in a genealogical chain can greatly reduce the
 number of likely genealogical configurations. For example, observing $n=3$
-segments between half-cousins $k=6$ generations back leads to a \emph{maximum a
-posteriori} estimate of $\hat{R}_{\text{MAP}} = 6$ recombinational meioses
-(females) along the genealogical chain. This estimate of $\hat{R}_{\text{MAP}}
-= 6$ leads ${6 + 1 \choose 2\cdot6 - 1} = 21$ out of $\mathcal{F}_{2k+1} = 233$
-possible X genealogical chains being \emph{maximum a posteriori} estimates of
-the chain that connects the two half-cousins.
-
+shared X segments between half-cousins $k=4$ generations back first restricts
+their shared ancestor to be one of the $34$ possible shared X ancestors (out of
+the total $128$ possible shared ancestors). Furthermore, these three shared X
+segments combined with our posterior distribution over recombinational meioses,
+leads to a \emph{maximum a posteriori} estimate of $\hat{R} = 4$ females along
+the genealogical chain connecting the half-cousins. Only 10 genealogical chains
+connecting these cousins contain four females, thus the likely relationship of
+these cousins is considerably narrowed from the original 128 possible
+relationships. Therefore, sharing genetic segments on the X can provide
+considerable information about genealogical relationships.
 
 \section{Discussion}
 
 Detecting and inferring the nature of recent ancestry is important to a range
 of applications and the nature of such relationships are often of inherent
-interest.  As the sample sizes of population genomic data sets increase, so
-will the probability of sampling individuals that share recent ancestry. In
+interest. As the sample sizes of population genomic data sets increase, so will
+the probability of sampling individuals that share recent ancestry. In
 particular, the very large data sets being developed in human genetics will
 necessitate taking a genealogical view of recent relatedness.  Our methods
 extend existing methods for the autosomes by accounting for the special
@@ -1193,7 +1194,7 @@ the number of females between two individuals in a genealogical chain is often
 unknown, we derive a distribution for recombinational meioses (equation
 \eqref{eq:recomb-pmf}).
 
-We derive distributions for the length and number of IBD X segments by
+We also derive distributions for the length and number of IBD X segments by
 marginalizing over the unknown number of recombinational meioses that can occur
 between two individuals connected through a genealogical chain. In both cases,
 we condition on knowing $k$ (the generations back to a shared ancestor) which
@@ -1201,12 +1202,16 @@ can be inferred from the autosomes \citep{huff2011maximum}. Our models for IBD
 segment number and length use a Poisson-Binomial approximation to the
 recombination process, which match simulation results closely.
 
-Our results here not only allow X IBD segments to be used to model recent
-ancestry, but in fact provide qualitatively different informative about
-genealogical ancestry than autosomal data alone. This additional information
-occurs through two avenues. First, sharing IBD segments on the X immediately
-reduces the potential genealogical ancestors two individuals share, since one's
-X ancestors are only a fraction of their possible genealogical ancestors (i.e.
+The genomic information about the genealogical relationship between pairs of
+individuals is inherently limited (due to the small number of segments shared
+and the stochasticity of the process); thus making full use of all shared
+segments on all chromosomes will be key to better inference. Our results here
+not only allow X IBD segments to be used to model recent ancestry, but in fact
+provide qualitatively different informative about genealogical ancestry than
+autosomal data alone. This additional information occurs through two avenues.
+First, sharing IBD segments on the X immediately reduces the potential
+genealogical ancestors two individuals share, since one's X ancestors are only
+a fraction of their possible genealogical ancestors (i.e.
 $\mathcal{F}_{k+2}/2^{k}$ in the case of a present-day female). Second, the
 varying number of females in an X genealogy across lineages combined with the
 fact that recombinational meioses only occur in females to some extent leave a
@@ -1224,23 +1229,15 @@ Our results should also be of use in understanding patterns of admixture on the
 X chromosome. In particular our results about the posterior information from
 the number and length of X segments shared with a genealogical ancestor can
 help us understand what can be learned from the presence (or absence) of
-particular segments of particular ancestry on the X chromosome. As an example,
-observing autosomal segments of Swedish ancestry can be used to estimate how
-far back a Swedish ancestor was, and the presence of Swedish X chromosome
-segments narrows down the possible ancestors that this segment could be
-inherited from. Furthermore, the number of X segments of Swedish ancestry make
-certain X lineages more likely than others, through affecting the posterior
-distribution of females along a lineage. These genetic genealogical inferences
-can provide informative details in genealogy reconstruction where some
-historical genealogical information is missing or uncertain.
-
-The information about the genealogical relationship between pairs of
-individuals is inherently limited (due to the small number of segments shared
-and the stochasticity of the process); thus making full use of all shared
-segments on all chromosomes will be key to better inference.  For example,
-while this information for an individual decays somewhat quickly after a small
-number of generations, models of X chromosome segment ancestry will be useful
-at a population-level for understanding sex-biased admixture
+segments of particular ancestry on the X chromosome. For example, if you
+observed long segments of a particular ancestry on your X chromosome our
+results could be used to aid the identification of which parts of your family
+tree this ancestry has been inherited from. These genetic genealogical
+inferences can provide informative details in genealogy reconstruction where
+historical genealogical information is missing or uncertain. While this
+information for an individual decays somewhat quickly after a small number of
+generations, models of X chromosome segment ancestry will be useful at a
+population-level for understanding sex-biased admixture
 \citep{bryc2010genome,Goldberg:2015ja,Shringarpure039347}.
 
 \section{Acknowledgements}
