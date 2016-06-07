@@ -476,8 +476,9 @@ In Figure \ref{fig:num-ancestors}A we show the increase in the number of X
 genealogical and genetic ancestors (green and light blue) and compare these to
 the growth of all of one's genealogical ancestors and autosomal genetic
 ancestors. The closed-form solution for the $k^\text{th}$ Fibonacci number is
-given by Binet's formula, which shows that the Fibonacci sequence grows at an
-exponential rate slower than $2^k$. 
+given by Binet's formula ($F_k = ((1 + \sqrt{5})^k - (1 - \sqrt{5})^k)/(2^k
+\sqrt{5})$), which shows that the Fibonacci sequence grows at an exponential
+rate slower than $2^k$. 
 
 Consequently, the fraction of ancestors who can contribute to the X chromosome
 declines with $k$. Given that a female has $\mathcal{F}_{k+2}$ X ancestors and
@@ -506,9 +507,11 @@ ancestor.
 In the next sections, we use stochastic simulations to verify the analytic
 approximations we derive; here we briefly describe the simulation methods. We
 have written a C and Python X genealogy simulation procedure (source code
-  available in the supplement and at
+available in the supplement and at
 \url{https://github.com/vsbuffalo/x-ancestry/}). We simulate a female's X
-chromosome genetic ancestry back through her X genealogy. Each simulation
+chromosome genetic ancestry back through her X genealogy. Figure
+\ref{fig:x-arc}A visualizes the X genetic ancestors of one simulated example X
+genealogy back nine generations to illustrate this process. Each simulation
 begins with two present-day female X chromosomes, one of which is passed to her
 mother and one to her father. Segments transmitted to a male ancestor are
 simply passed directly back to his mother (without recombination). For segments
@@ -525,16 +528,6 @@ analytic approximations, our simulation procedure maintains long-run
 dependencies created during recombination, allowing us to see the extent to
 which assuming independent segment survival adversely impacts our analytic
 results.
-
-Figure \ref{fig:x-arc}A depicts the X genetic ancestors of one simulated
-example X genealogy back nine generations to illustrate this process. Each arc
-represents a single ancestor of a present-day female; red arcs are female X
-ancestors and blue arcs are male X ancestors. Ancestors that are not X
-ancestors are shaded gray. The saturation indicates the genetic contribution of
-this individual to the present-day female's X (with white indicating an X
-ancestor that made no genetic contribution on the X). Figure \ref{fig:x-arc}B
-shows the underlying X chromosome IBD segments for this same simulation back
-four generations.
 
 \paragraph{The number of recombinational meioses along an unknown X lineage}
 
@@ -574,7 +567,7 @@ all of the $\mathcal{F}_{k+2}$ lineages to an X ancestor are equally probable),
 the number of females (thus, recombinational meioses) that occur is a random
 variable $R$. By the no two adjacent males condition, the possible number of
 females $R$ is constrained; $R$ has a lower bound of $\lfloor \nicefrac{k}{2}
-\rfloor$, which corresponds to a male alternating each generation to an
+\rfloor$, which corresponds to male-female alternation each generation to an
 ancestor in the $k^\text{th}$ generation. Similarly, the upper bound of $R$ is
 $k$, since it is possible every individual along one X lineage is a female.
 Noting that an X genealogy extending back $k$ generations enumerates every
@@ -631,11 +624,15 @@ model described in Section \ref{sec:auto-dist-ibd-seg}:
 \end{equation}
 %
 
-If we consider a single X genealogical ancestor $k$ generations back, this
-individual could be any of the present-day female's $\mathcal{F}_{k+2}$ X
-ancestors. Since the particular lineage to this ancestor is unknown, we
-marginalize over all possible numbers of recombinational meioses that could
-occur:
+Note that once we have conditioned on the number of recombinational meioses $r$,
+the lineages to an X ancestor are interchangeable; the specific X lineage
+affects recombination (and thus the IBD number and length distributions) only
+through the number of recombinational meioses along the lineage. 
+
+If we consider an X genealogical ancestor $k$ generations back, this individual
+could be any of the present-day female's $\mathcal{F}_{k+2}$ X ancestors. Since
+the particular lineage to this ancestor is unknown, we marginalize over all
+possible numbers of recombinational meioses that could occur:
 
 \begin{figure}[!ht]
   \centering
@@ -655,11 +652,6 @@ results averaged over 5,000 simulations are the gray points.}
                       &= \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty {b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \; \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
 \end{align}
 
-Note that once we've conditioned on the number of recombinational meioses $r$,
-the lineages to an X ancestor are interchangeable; the specific X lineage
-affects recombination (and thus the IBD number and length distributions) only
-through the number of recombinational meioses along the lineage.
-
 For the distribution of number of IBD segments counted in the offspring, we
 substitute $k-1$ for $k$
 \begin{equation}
@@ -670,7 +662,8 @@ substitute $k-1$ for $k$
 In this formulation, if $k=1$, $r = 0$. In this case, the lack of
 recombinational meioses implies $b=0$, such that a present-day female shares
 $n=1$ X chromosomes with each of her two parents in the $k=1$ generation with
-certainty. 
+certainty. These segment number distributions are visualized in Figure
+\ref{fig:x-ancestor-blockcounts} (light blue).
 
 We can use our equation \eqref{eq:x-number-block} to obtain $P(N > 0)$, the
 probability that a genealogical X ancestor $k$ generations ago is a
@@ -744,10 +737,6 @@ lineage between individuals. As the IBD segments shared between two individuals
 is a function of the number breakpoints $B$, and thus recombinational meioses,
 the length and number distributions $P(N = n)$ and $p(U = u)$ (which separately
 marginalize over both $R$ and $B$) are not independent of one another.
-Intuitively, we can understand this dependence in the following way: if we
-observe one long segment nearly the entire length of the X, this makes
-observing a large number of additional segments in the remaining region of the
-X unlikely.
 
 \section{Shared X Ancestry}
 \label{sec:shared-x-anc}
@@ -766,18 +755,18 @@ once removed) but we do not pursue this here.
 
 \paragraph{Probability of a Shared X Ancestor} 
 
-Given that two individuals share their first common genealogical ancestor in
-the $k^\text{th}$ generation, we can calculate the probability that this
-single ancestor is also an X genealogical ancestor. We can think of this first
-shared ancestor in the $k^\text{th}$ generation as the same individual in both
-of the two sets of $2^k$ ancestors of each present-day individual. Since this
-shared ancestor must be of the same sex in each of the two present-day
-individuals' genealogies, we condition on the ancestor's sex (with probability
-$\nicefrac{1}{2}$ each) and then calculate the probability that this individual
-is also an X ancestor (with the same sex). Let us define $N_{\venus}$ and
-$N_{\mars}$ as the number of genealogical female and male ancestors, and
-$N_{\venus}^X$ and $N_{\mars}^X$ as the number of X female and male ancestors
-of a present-day individual in the $k^\text{th}$ generation. Then:
+Two individuals share their first common genealogical ancestor in the
+$k^\text{th}$ generation if one of an individual's $2^k$ ancestors is also one
+of the other individual's ancestors $k$ generations back. Given this shared
+ancestor, we can calculate the probability that this single ancestor is also an
+X genealogical ancestor. Since this shared ancestor must be of the same sex in
+each of the two present-day individuals' genealogies, we condition on the
+ancestor's sex (with probability $\nicefrac{1}{2}$ each) and then calculate the
+probability that this individual is also an X ancestor (with the same sex). Let
+us define $N_{\venus}$ and $N_{\mars}$ as the number of genealogical female and
+male ancestors, and $N_{\venus}^X$ and $N_{\mars}^X$ as the number of X female
+and male ancestors of a present-day individual in the $k^\text{th}$ generation.
+Then:
 
 \begin{align}
   \label{eq:prob-shared-x-ancestor}
@@ -794,8 +783,8 @@ shared X ancestor of both present-day individuals.
 \paragraph{The Sex of Shared Ancestor}
 \label{p:sex-of-shared-ancestor}
 
-Unlike genealogical ancestors, which have equal numbers of female and male
-ancestors, recent X genealogical ancestors are predominantly female. Since a
+Unlike genealogical ancestors---which are equally composed of males and
+females---recent X genealogical ancestors are predominantly female. Since a
 present-day female has $\mathcal{F}_{k+1}$ female ancestors and
 $\mathcal{F}_{k}$ male ancestors $k$ generations ago, the ratio of female to
 male X genealogical ancestors converges to the Golden Ratio $\varphi = \frac{1
@@ -835,7 +824,7 @@ ancestor is:
 \end{equation}
 
 The probability that the shared ancestor is male is simply $1-P(\fsxa)$. One
-curiosity is that as $k \to \infty$, $P(\fsxa) = \frac{\varphi}{\sqrt{5}} =
+curiosity is that as $k \to \infty$, $P(\fsxa) \to \frac{\varphi}{\sqrt{5}} =
 \frac{5 + \sqrt{5}}{10} \approx 0.7236$, where $\varphi$ is the Golden Ratio.
 
 \paragraph{Partnered Shared Ancestors}
@@ -851,13 +840,13 @@ half-cousins, or (3) share no X ancestry. We calculate the probabilities
 associated with each of these events here.
 
 Two individuals are full-cousins if the $\text{great}^{k-2}$ grandfather and
-the $\text{great}^{k-2}$ grandmother in one individual's genealogy are the same
-couple as in the other individual's genealogy. For these two full-cousins to be
-X full-cousins, this couple must also be a couple in both individuals' X
-genealogies. In every X genealogy, the number of couples in generation $k$ is
-the number of females in generation $k-1$, as every female has two X ancestors
-in the prior generation (while males only have one). Thus, the probability two
-female $k-1$ degree full-cousins are also X full-cousins is:
+the $\text{great}^{k-2}$ grandmother in one individual's genealogy are in the
+other individual's genealogy. For these two full-cousins to be X full-cousins,
+this couple must also be a couple in both individuals' X genealogies. In every
+X genealogy, the number of couples in generation $k$ is the number of females
+in generation $k-1$, as every female has two X ancestors in the prior
+generation (while males only have one). Thus, the probability two female $k-1$
+degree full-cousins are also X full-cousins is:
 
 \begin{equation}
   P(\text{X full-cousins} \; | \; \text{full-cousins}) = 
@@ -1050,7 +1039,7 @@ two full-sibling daughters to the present-day female full-cousins.
 
 First, we find the number of females (including the two full-sibling daughters
 in the $(k-1)^\text{th}$ generation) in the genealogical chain between the two
-full-cousins (omitting the shared male and female ancestors, which we account
+X full-cousins (omitting the shared male and female ancestors, which we account
 for separately). Like equation \eqref{eq:prob-r-given-female}, this is a
 discrete convolution:
 
@@ -1059,7 +1048,7 @@ discrete convolution:
 \end{equation}
 
 This probability is valid for $2\lfloor (k-2)/2 \rfloor + 2 \le r \le 2k-2$ and
-is 0 elsewhere. For $N=n$ segments to be shared between two full-cousins, $z$
+is 0 elsewhere. For $N=n$ segments to be shared between two X full-cousins, $z$
 segments can be shared via the maternal shared X ancestor (where $0 \le z \le n$)
 and $n-z$ segments can be shared through the paternal shared X ancestor. We
 marginalize over all possible values of $z$, giving us another discrete
@@ -1092,11 +1081,11 @@ number results to 5,000 genealogical simulations in Figure
 With our IBD X segment distributions, we now turn to how these can be used to
 infer recent X ancestry. In practice, inferring the number of generations back
 to a common ancestor ($k$) is best accomplished through the signature of recent
-ancestry from the 22 autosomes, rather than through the short X chromosome.
+ancestry from the 22 autosomes, rather than through the short X chromosome. A
+number of methods are available for the task of estimating $k$ through
+autosomal IBD segments (\cite{huff2011maximum,Henn:2012ij,Durand010512}).
 Therefore, we concentrate on questions about the extra information that the X
-provides conditional on $k$ being known with certainty. A number of methods are
-available for the task of estimating $k$ through autosomal IBD segments
-(\cite{huff2011maximum,Henn:2012ij,Durand010512}).
+provides conditional on $k$ being known with certainty. 
 
 Here, we focus on two separate questions: (1) what is the probability of being
 an X genealogical ancestor given that no IBD segments are observed, and (2) can
@@ -1127,11 +1116,11 @@ probabilities.}
 It's possible that $k$ generations back, an individual is a genealogical X
 ancestor but shares no X genetic material with a present-day descendent. To
 what extent is the lack of sharing on the X chromosome with an ancestor
-informative about our relationship to them? How does the lack of sharing of the
-X chromosome between $(k-1)\text{th}$ cousins change our views as to their relationship?
-To get at these issues, we can use our analytic approximations to calculate the
-probability that one is an X ancestor given that no segments are observed,
-$P(\text{X ancestor} \;|\; N = 0)$:
+informative about our relationship to them? Similarly, how does the lack of
+sharing of the X chromosome between $(k-1)\text{th}$ cousins change our views
+as to their relationship?  To get at these issues, we can use our analytic
+approximations to calculate the probability that one is an X ancestor given
+that no segments are observed, $P(\text{X ancestor} \;|\; N = 0)$:
 
 \begin{equation}
   \label{eq:post-x-ancs}
@@ -1152,28 +1141,24 @@ observed. In both cases, the lack of sharing on the X chromosome does narrow
 the field of ancestors, making those who are not X genealogical ancestors more
 likely, beyond our prior. This is especially true for close relationships
 ($k<5$), where the X is likely to be shared if the ancestor was an X
-genealogical ancestor.
+genealogical ancestor. Therefore not sharing X segments with ancestors (or
+cousins) is informative about genealogical relationships.
 
 X IBD segments can be used to infer genealogical details that are not possible
-looking only at autosome IBD segments. Unlike the X, the autosomes undergo
-recombinational meioses in every individual each generation.  Consequently,
-while IBD autosome segments leave a signature of recent ancestry between two
-individuals, the uniformity of recombinational meioses across every lineage to
-the shared ancestor leaves no signal of \emph{which} genealogical lineage
-connects two present-day cousins.
+looking only at autosome IBD segments. Consequently, while IBD autosome
+segments leave a signature of recent ancestry between two individuals, the
+uniformity of recombinational meioses across every lineage to the shared
+ancestor leaves no signal of \emph{which} genealogical lineage connects two
+present-day cousins.
 
 In contrast, X genealogical chains have two properties that leave a signature
-of which genealogical lineage connects two present-day cousins. First,
-recombinational meioses only occur in females. Consequently, more females along
-an X genealogical chain increase the rate of recombination and alter the IBD
-segments length and number distributions in a lineage-specific manner.  Second,
-the number of females varies across X lineages; for example the number of
-females between two present-day half-cousins varies by a factor of two or more.
-These two properties allow us to find a posterior distribution for the number
-of females that separate two present-day cousins. This number of females $R$ is
-our only inferable summary of the genealogical chain and constrains the
-possible X genealogical chains between these two cousins by varying amounts
-dependent on $R$ and $k$.
+of which genealogical lineage connects two present-day cousins. Since the the
+number of females (and thus recombinational meioses) varies along X lineages,
+the number and length of X segments carries information about genealogical
+details not accessible through autosomal data alone--the number of females
+along a genealogical chain. This number of females $R$ is our only inferable
+summary of an X genealogical chain and constrains the possible X genealogical
+chains between these two cousins by varying amounts dependent on $R$ and $k$.
 
 Our approach to inference is through the posterior distribution of $R$ given an
 observed number of IBD segments $N$ and conditioning on $k$. We calculate this
