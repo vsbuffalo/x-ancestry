@@ -85,9 +85,10 @@ segments shared amongst relatives. When inferring relationships among
 individuals, the number of female ancestors along a genealogical lineage will
 often be unknown. Therefore, our IBD segment length and number distributions
 marginalize over this unknown number of recombinational meioses through a
-distribution of recombinational meioses we derive. We show how our results can
-be used to estimate the number of female ancestors between two relatives,
-giving us more genealogical details than possible with autosomal data alone.
+distribution of recombinational meioses we derive. We show that by using Bayes
+theorem to invert these distributions, we can estimate the number of female
+ancestors between two relatives, giving us details about the genealogical
+relations between individuals not possible with autosomal data alone.
 
 \end{abstract}
 
@@ -103,7 +104,7 @@ understanding this sharing is key to many applications in biology
 recent shared ancestry is an integral part of detecting cryptic relatedness in
 genome-wide association studies \citep{gusev2009whole}, discovering
 mis-specified relationships in pedigrees \citep{sun2002enhanced}, inferring
-pairwise relationships \citep{Epstein:2000b, glaubitz2003prospects,
+pairwise relationships \citep{Epstein:2000bg, glaubitz2003prospects,
 huff2011maximum}, and localizing disease traits in pedigrees
 \citep{thomas2008shared}. In forensics, recent ancestry is crucial for both
 accounting for population-level relatedness \citep{balding1994dna} and in
@@ -118,10 +119,9 @@ migrations and other demographic events
 also plays a large role in understanding recently admixed populations, where
 individuals draw ancestry from multiple distinct populations
 \citep{pool2009inference,Gravel:2012ip,Liang:2014fo}. Finally, relative finding
-through recent ancestry is increasingly a key feature of direct-to-consumer
-personal genomics products and an important source of information for
-genealogists leveraging genetic information
-\citep{Durand010512,royal2010inferring}. 
+through recent genetic ancestry is increasingly a key feature of
+direct-to-consumer personal genomics products and an important source of
+information for genealogists \citep{Durand010512,royal2010inferring}. 
 
 Approaches to infer recent ancestry among humans have often used only the
 autosomes, as the recombining autosomes offer more opportunity to detect a
@@ -136,22 +136,22 @@ In this paper, we look at the inheritance of chromosomal segments on the X
 chromosome among closely related individuals. Our genetic ancestry models are
 structured around biparental genealogies back in time, an approach used by many
 previous authors \citep[e.g.,][]{Donnelly:1983fi,
-chang1999recent,Barton:2011iq,Rohde:2004kl}. If we ignore pedigree collapse
-(due to inbreeding), the genealogy of a present-day individual encodes all
-biparental relationships back in time; e.g. the two parents, four grandparents,
-eight great-grandparents, $2^k$ $\text{great}^{k-2}$ grandparents, and in
-general the $2^k$ ancestors $k$ generations back; we refer to these individuals
-as one's \emph{genealogical ancestors}. Note that throughout this paper,
-\emph{ancestors} refers to the ancestors within generation $k$, not the total
-number of ancestors from generations 1 to $k$, $\sum_{i=1}^k 2^i$. A
-genealogical ancestor of a present-day individual is said to also be a
-\emph{genetic ancestor} if the present-day individual shares genetic material
-by descent from this ancestor.  We refer to these segments of shared genetic
-material as being identical by descent, and in doing so we ignore the
-possibility of mutation in the limited number of generations separating our
-individuals. Throughout this paper, we will ignore the pseudo-autosomal (PAR)
-region of the X chromosome, which undergoes crossing over with the Y chromosome
-in males \citep{koller1934genetical} to ensure proper disjunction in meiosis I
+chang1999recent,Barton:2011iq,Rohde:2004kl}. If we ignore pedigree collapse,
+the genealogy of a present-day individual encodes all biparental relationships
+back in time; e.g. the two parents, four grandparents, eight
+great-grandparents, $2^k$ $\text{great}^{k-2}$ grandparents, and in general the
+$2^k$ ancestors $k$ generations back; we refer to these individuals as one's
+\emph{genealogical ancestors}. Note that throughout this paper, $k^\text{th}$
+generation \emph{ancestors} refers to the ancestors within generation $k$, not
+the total number of ancestors from generations 1 to $k$. A genealogical
+ancestor of a present-day individual is said to also be a \emph{genetic
+ancestor} if the present-day individual shares genetic material by descent from
+this ancestor.  We refer to these segments of shared genetic material as being
+identical by descent, and in doing so we ignore the possibility of mutation in
+the limited number of generations separating our individuals. Throughout this
+paper, we will ignore the pseudo-autosomal (PAR) region(s) of the X chromosome,
+which undergoes crossing over with the Y chromosome in males
+\citep{koller1934genetical} to ensure proper disjunction in meiosis I
 \citep{hassold1991xy}. We also ignore gene conversion which is known to occur
 on the X \citep{Rosser:2009df}. 
 
@@ -184,23 +184,23 @@ kin-selection models involving the X chromosome
 
 In Section \ref{sec:auto-ancestry} we review models of autosomal identity by
 descent among relatives, on which we base our models of X genetic ancestry.
-Then, in Section \ref{sec:x-ancestry} we look at X genealogies back in time, as
-the properties of X genealogies affect the transmission of X genetic material
-from X ancestors to a present-day individual. We develop simple approximations
-to the probability distributions of the number and length of X chromosome
-segments that will be shared IBD between a present-day female and one of her X
-ancestors a known number of generations back in time. These models provide a
-set of results for the X chromosome equivalent to those already known for the
-autosomes \citep{Donnelly:1983fi,thomas:1994hg}. Then, in Section
-\ref{sec:shared-x-anc}, we look at shared X ancestry---when two present-day
-cousins share an X ancestor a known number of generations back. We calculate
-the probabilities that genealogical half- and full-cousins are also connected
-through their X genealogy, and thus can potentially share genetic material on
-their X. We then extend our models of IBD segment length and number to segments
-shared between half- and full-cousins. Finally, in Section \ref{sec:inf} we
-show that shared X genetic ancestry contains additional information (compared
-to genetic autosomal ancestry) for inferring relationships among individuals,
-and explore the limits of this information. 
+Then, in Section \ref{sec:x-ancestry} we look at X genealogies, as the
+properties of X genealogies affect the transmission of X genetic material from
+X ancestors to a present-day individual. We develop simple approximations to
+the probability distributions of the number and length of X chromosome segments
+that will be shared IBD between a present-day female and one of her X ancestors
+a known number of generations back. These models provide a set of results for
+the X chromosome equivalent to those already known for the autosomes
+\citep{Donnelly:1983fi,thomas:1994hg}. Then, in Section \ref{sec:shared-x-anc},
+we look at shared X ancestry---when two present-day cousins share an X ancestor
+a known number of generations back. We calculate the probabilities that
+genealogical half- and full-cousins are also connected through their X
+genealogy, and thus can potentially share genetic material on their X. We then
+extend our models of IBD segment length and number to segments shared between
+half- and full-cousins. Finally, in Section \ref{sec:inf} we show that shared X
+genetic ancestry contains additional information (compared to genetic autosomal
+ancestry) for inferring relationships among individuals, and explore the limits
+of this information. 
 
 \section{Autosomal Ancestry}
 \label{sec:auto-ancestry}
@@ -208,14 +208,14 @@ and explore the limits of this information.
 To facilitate comparison with our X chromosome results, we first briefly review
 analogous autosomal segment number and segment length distributions
 \citep{Donnelly:1983fi,thomas:1994hg,huff2011maximum}. Throughout this paper,
-we assume that one's genealogical ancestors $k$ generations back are distinct,
-i.e. there is no pedigree collapse due to inbreeding (see Appendix
-\ref{ap:ped-collapse} for a model of how this assumption breaks down with
-increasing $k$). Thus, an individual has $2^k$ \emph{distinct} genealogical
-ancestors. Assuming no selection and fair meiosis, a present-day individual's
-autosomal genetic material is spread across these $2^k$ ancestors with equal
-probability, having been transmitted to the present-day individual solely
-through recombination and fair segregation.
+we assume that one's genealogical ancestors $k$ generations back are distinct
+(e.g. there is no inbreeding), i.e. there is no pedigree collapse due to
+inbreeding (see Appendix \ref{ap:ped-collapse} for a model of how this
+assumption breaks down with increasing $k$). Thus, an individual has $2^k$
+\emph{distinct} genealogical ancestors. Assuming no selection and fair meiosis,
+a present-day individual's autosomal genetic material is spread across these
+$2^k$ ancestors with equal probability, having been transmitted to the
+present-day individual solely through recombination and segregation.
 
 We model the process of crossing over during meiosis as a continuous time
 Markov process along the chromosome, as in \textcite{thomas:1994hg} and
@@ -225,15 +225,16 @@ recombinational breakpoints occur as a Poisson process running with a uniform
 rate equal to the total length of the genetic map (in Morgans), $\nu$. Within a
 single chromosome, $b$ breaks creates a mosaic of $b+1$ alternating pieces of
 maternal and paternal segments. This alternation between maternal and paternal
-haplotypes creates long-run dependency between segments. We ignore these
-dependencies in our analytic models by assuming that each chromosomal segment
-survives segregation independently with probability \nicefrac{1}{2} per
-generation. For $d$ independent meioses separating two individuals, we imagine
-the Poisson recombination process running at rate $\nu d$, and for a segment to
-be shared IBD between the two ancestors it must survive $\nicefrac{1}{2^d}$
-segregations.  Consequently, the expected number of segments shared IBD between
-two individuals $d$ meioses apart in a genome with $c$ chromosomes is
-approximated as \citep{thomas:1994hg}:
+haplotypes creates long-run dependency between segments
+\citep{liang2014lengths}.  We ignore these dependencies in our analytic models
+by assuming that each chromosomal segment survives segregation independently
+with probability \nicefrac{1}{2} per generation. For $d$ independent meioses
+separating two individuals, we imagine the Poisson recombination process
+running at rate $\nu d$, and for a segment to be shared IBD between the two
+ancestors it must survive $\nicefrac{1}{2^d}$ segregations.  Consequently, the
+expected number of segments shared IBD between two individuals $d$ meioses
+apart in a genome with $c$ chromosomes is approximated as
+\citep{thomas:1994hg}:
 
 \begin{align}
   \label{eq:exp-n}
@@ -472,11 +473,11 @@ simple offset can be made to handle males.
 
 
 In Figure \ref{fig:num-ancestors}A we show the increase in the number of X
-genealogical and genetic ancestors and compare these to the growth of all of
-one's genealogical ancestors and autosomal genetic ancestors. The closed-form
-solution for the $k^\text{th}$ Fibonacci number is given by Binet's formula,
-which shows that the Fibonacci sequence grows at an exponential rate slower
-than $2^k$. 
+genealogical and genetic ancestors (green and light blue) and compare these to
+the growth of all of one's genealogical ancestors and autosomal genetic
+ancestors. The closed-form solution for the $k^\text{th}$ Fibonacci number is
+given by Binet's formula, which shows that the Fibonacci sequence grows at an
+exponential rate slower than $2^k$. 
 
 Consequently, the fraction of ancestors who can contribute to the X chromosome
 declines with $k$. Given that a female has $\mathcal{F}_{k+2}$ X ancestors and
@@ -1269,7 +1270,14 @@ Our results should also be of use in understanding patterns of admixture on the
 X chromosome. In particular our results about the posterior information from
 the number and length of X segments shared with a genealogical ancestor can
 help us understand what can be learned from the presence (or absence) of
-particular segments of particular ancestry on the X chromosome. While this
+particular segments of particular ancestry on the X chromosome. 
+
+The information about the genealogical relationship between pairs of
+individuals is inherited limited (because of the small number of segments
+shared and the stochasticity of the process); thus making full use of all
+shared segments on all chromosomes will be key to better inference 
+
+While this
 information for an individual decays somewhat quickly after a small number of
 generations, models of X chromosome segment ancestry will be useful at a
 population-level for understanding sex-biased admixture
