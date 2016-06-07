@@ -85,10 +85,10 @@ segments shared amongst relatives. When inferring relationships among
 individuals, the number of female ancestors along a genealogical lineage will
 often be unknown. Therefore, our IBD segment length and number distributions
 marginalize over this unknown number of recombinational meioses through a
-distribution of recombinational meioses we derive. We show that by using Bayes
-theorem to invert these distributions, we can estimate the number of female
-ancestors between two relatives, giving us details about the genealogical
-relations between individuals not possible with autosomal data alone.
+distribution of recombinational meioses we derive. By using Bayes theorem to
+invert these distributions, we can estimate the number of female ancestors
+between two relatives, giving us details about the genealogical relations
+between individuals not possible with autosomal data alone.
 
 \end{abstract}
 
@@ -118,7 +118,7 @@ migrations and other demographic events
 \citep{ralphcoop2013,palamara2012length}. An understanding of recent ancestry
 also plays a large role in understanding recently admixed populations, where
 individuals draw ancestry from multiple distinct populations
-\citep{pool2009inference,Gravel:2012ip,Liang:2014fo}. Finally, relative finding
+\citep{pool2009inference,Gravel:2012ip,liang2014lengths}. Finally, relative finding
 through recent genetic ancestry is increasingly a key feature of
 direct-to-consumer personal genomics products and an important source of
 information for genealogists \citep{Durand010512,royal2010inferring}. 
@@ -174,33 +174,33 @@ kin-selection models involving the X chromosome
   \centering
   \includegraphics[width=\textwidth]{images/x-rm-tree.eps}
 
-  \caption{An example genealogy with the embedded X genealogy back five
-    generations. Males are depicted as squares and females as circles.
+  \caption{An example genealogy back five generations with the embedded X
+    genealogy. Males are depicted as squares and females as circles.
     Individuals in the X genealogy are shaded gray while unshaded individuals
     are ancestors that are not X ancestors. Each X ancestor is labeled with the
   number of recombinational meioses to the present-day female.}
   \label{fig:x-rm-tree}
 \end{figure}
 
-In Section \ref{sec:auto-ancestry} we review models of autosomal identity by
-descent among relatives, on which we base our models of X genetic ancestry.
-Then, in Section \ref{sec:x-ancestry} we look at X genealogies, as the
-properties of X genealogies affect the transmission of X genetic material from
-X ancestors to a present-day individual. We develop simple approximations to
-the probability distributions of the number and length of X chromosome segments
-that will be shared IBD between a present-day female and one of her X ancestors
-a known number of generations back. These models provide a set of results for
-the X chromosome equivalent to those already known for the autosomes
-\citep{Donnelly:1983fi,thomas:1994hg}. Then, in Section \ref{sec:shared-x-anc},
-we look at shared X ancestry---when two present-day cousins share an X ancestor
-a known number of generations back. We calculate the probabilities that
-genealogical half- and full-cousins are also connected through their X
-genealogy, and thus can potentially share genetic material on their X. We then
-extend our models of IBD segment length and number to segments shared between
-half- and full-cousins. Finally, in Section \ref{sec:inf} we show that shared X
-genetic ancestry contains additional information (compared to genetic autosomal
-ancestry) for inferring relationships among individuals, and explore the limits
-of this information. 
+In Section \ref{sec:auto-ancestry} (and in Appendix \ref{ap:auto-cousin}) we
+review models of autosomal identity by descent among relatives, on which we
+base our models of X genetic ancestry.  Then, in Section \ref{sec:x-ancestry}
+we look at X genealogies, as their properties affect the transmission of X
+genetic material from X ancestors to a present-day individual. We develop
+simple approximations to the probability distributions of the number and length
+of X chromosome segments that will be shared IBD between a present-day female
+and one of her X ancestors a known number of generations back. These models
+provide a set of results for the X chromosome equivalent to those already known
+for the autosomes \citep{Donnelly:1983fi,thomas:1994hg}. Then, in Section
+\ref{sec:shared-x-anc}, we look at shared X ancestry---when two present-day
+cousins share an X ancestor a known number of generations back. We calculate
+the probabilities that genealogical half- and full-cousins are also connected
+through their X genealogy, and thus can potentially share genetic material on
+their X. We then extend our models of IBD segment length and number to segments
+shared between half- and full-cousins. Finally, in Section \ref{sec:inf} we
+show that shared X genetic ancestry contains additional information (compared
+to genetic autosomal ancestry) for inferring relationships among individuals,
+and explore the limits of this information. 
 
 \section{Autosomal Ancestry}
 \label{sec:auto-ancestry}
@@ -223,18 +223,17 @@ Markov process along the chromosome, as in \textcite{thomas:1994hg} and
 doing so we assume no crossover interference, such that in each generation $b$
 recombinational breakpoints occur as a Poisson process running with a uniform
 rate equal to the total length of the genetic map (in Morgans), $\nu$. Within a
-single chromosome, $b$ breaks creates a mosaic of $b+1$ alternating pieces of
-maternal and paternal segments. This alternation between maternal and paternal
-haplotypes creates long-run dependency between segments
-\citep{liang2014lengths}.  We ignore these dependencies in our analytic models
-by assuming that each chromosomal segment survives segregation independently
-with probability \nicefrac{1}{2} per generation. For $d$ independent meioses
-separating two individuals, we imagine the Poisson recombination process
-running at rate $\nu d$, and for a segment to be shared IBD between the two
-ancestors it must survive $\nicefrac{1}{2^d}$ segregations.  Consequently, the
-expected number of segments shared IBD between two individuals $d$ meioses
-apart in a genome with $c$ chromosomes is approximated as
-\citep{thomas:1994hg}:
+single chromosome, $b$ breaks create a mosaic of $b+1$ alternating maternal and
+paternal segments. This alternation between maternal and paternal haplotypes
+creates long-run dependency between segments \citep{liang2014lengths}.  We
+ignore these dependencies in our analytic models by assuming that each
+chromosomal segment survives segregation independently with probability
+\nicefrac{1}{2} per generation. For $d$ independent meioses separating two
+individuals, we imagine the Poisson recombination process running at rate $\nu
+d$, and for a segment to be shared IBD between the two ancestors it must
+survive $\nicefrac{1}{2^d}$ segregations.  Consequently, the expected number of
+segments shared IBD between two individuals $d$ meioses apart in a genome with
+$c$ chromosomes is approximated as \citep{thomas:1994hg}:
 
 \begin{align}
   \label{eq:exp-n}
@@ -311,48 +310,9 @@ that $k=1$, the thinning model treats the number of segments shared IBD with
 one's parents is $N \sim \text{Pois}(c)$ rather than $c$). See Appendix
 \ref{ap:pois-thin} for a further comparison of these two models. A more formal
 description of this approximation as a continuous-time Markov process is given
-in \textcite{thomas:1994hg}.
-
-\paragraph{The distribution of IBD segments between cousins}
-
-Similarly, we can derive the distribution for the number of IBD segments shared
-between two half-cousins with an ancestor in the $k^\text{th}$ generation. Two
-half-cousins are separated by $2k$ meioses, thus the distribution for number of
-segments is:
-
-\begin{equation} \label{eq:auto-seg-cousins}
- P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 1} \right)
-\end{equation}
-%
-Since either of the shared ancestor's haplotypes can be shared IBD between the
-two cousins, the Poisson process rate is doubled. Full-cousins can share segments
-via either of their two shared ancestors, leading the distribution to be:
-
-\begin{equation}
-  P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 2} \right)
-\end{equation}
-
-
-\paragraph{The distribution of autosome segment lengths}
-
-In addition to the number of IBD segments, the length of segments is also
-informative about ancestry \citep[e.g.][]{palamara2012length}. As we model
-crossing over as a Poisson process, a one Morgan region will experience on
-average $d$ recombination events over $d$ meioses. Therefore, the probability
-density of segment lengths shared IBD between two individuals $d$ meioses apart
-is exponential with rate $d$:
-
-\begin{equation}
-  \label{eq:auto-seg-lens}
-  p(U=u | d) = d e^{-du}
-\end{equation}
-
-Equations \eqref{eq:auto-seg-lens} and \eqref{eq:auto-seg-cousins} specify a
-model of the number and lengths of segments shared between various degree
-relatives. Various authors have used these types of results to derive
-likelihood-based models for classifying the genealogical relationship between
-pairs of individuals using autosome IBD data
-\citep{huff2011maximum,Henn:2012ij,Durand010512}. 
+in \textcite{thomas:1994hg}. In Appendix \ref{ap:auto-cousin}, we describe
+similar results for the number of autosomal segments shared between cousins and
+the length distributions of autosomal segments.
 
 We will use similar models as these in modeling the length and number of X
 chromosome segments shared been relatives. However, the nature of X genealogies
@@ -406,22 +366,24 @@ in X genealogies.
     % change 0.49 to 0.5 for vertical alignment of subfigures
     \includegraphics[width=\textwidth]{images/num-ancestors}
 
-    \caption{A: Each line represents a present-day female's number ancestors
-(y-axis) in the $k^\text{th}$ generation (x-axis; where $k=1$ is parental
-generation), for a variety of cases. The present day's number of genealogical
-ancestors in the $k^\text{th}$ generation is in red, and the expected number of
-these ancestors that contribute any autosome genetic material is in yellow.
-Likewise, the present-day female's genealogical X ancestors is in green, and
-the expected number of these ancestors that contribute any X genetic material
-is in blue. For comparison, the number of genetic ancestors of an autosome of
-length equal to the X is included (orange).  B: The probability of genealogical
-and genetic ancestry (y-axis) from an arbitrary ancestor in the $k^\text{th}$
-generation (x-axis). $P(\text{N}_\text{auto} > 0)$ is derived from equation
-\eqref{eq:auto-segment-number}, $P(\text{N}_\text{X} > 0 \;|\; \text{X
-ancestor})$ from equation \eqref{eq:x-number-block}, $P(\text{N}_\text{X} > 0
-\;|\; \text{ancestor})$ from equations \eqref{eq:x-number-block} and
-\eqref{eq:prob-x-anc}, and $P(\text{X ancestor} \;|\; \text{ancestor})$ from
-equation \eqref{eq:prob-x-anc}. Points show simulated results.}
+    \caption{A: Each line represents a present-day female's expected number of
+      ancestors (y-axis) in the $k^\text{th}$ generation (x-axis; where $k=1$
+      is parental generation), for a variety of cases. The present day female's
+      number of genealogical ancestors in the $k^\text{th}$ generation is in
+      red, and the expected number of these ancestors that contribute any
+      autosome genetic material is in yellow. Likewise, the present-day
+      female's number genealogical X ancestors is in green, and the expected
+      number of these ancestors that contribute any X genetic material is in
+      blue. For comparison, the number of genetic ancestors of an autosome of
+      length equal to the X is included (orange). B: The probability of
+      genealogical and genetic ancestry (y-axis) from an arbitrary ancestor in
+      the $k^\text{th}$ generation (x-axis). $P(\text{N}_\text{auto} > 0)$ is
+      derived from equation \eqref{eq:auto-segment-number},
+      $P(\text{N}_\text{X} > 0 \;|\; \text{X ancestor})$ from equation
+      \eqref{eq:x-number-block}, $P(\text{N}_\text{X} > 0 \;|\;
+      \text{ancestor})$ from equations \eqref{eq:x-number-block} and
+    \eqref{eq:prob-x-anc}, and $P(\text{X ancestor} \;|\; \text{ancestor})$
+  from equation \eqref{eq:prob-x-anc}. Points show simulated results.}
 
 \label{fig:num-ancestors}
 \end{figure}
@@ -476,9 +438,9 @@ In Figure \ref{fig:num-ancestors}A we show the increase in the number of X
 genealogical and genetic ancestors (green and light blue) and compare these to
 the growth of all of one's genealogical ancestors and autosomal genetic
 ancestors. The closed-form solution for the $k^\text{th}$ Fibonacci number is
-given by Binet's formula ($F_k = ((1 + \sqrt{5})^k - (1 - \sqrt{5})^k)/(2^k
-\sqrt{5})$), which shows that the Fibonacci sequence grows at an exponential
-rate slower than $2^k$. 
+given by Binet's formula ($\mathcal{F}_n = ((1 + \sqrt{5})^n - (1 -
+\sqrt{5})^n)/(2^n \sqrt{5})$), which shows that the Fibonacci sequence grows at
+an exponential rate slower than $2^k$. 
 
 Consequently, the fraction of ancestors who can contribute to the X chromosome
 declines with $k$. Given that a female has $\mathcal{F}_{k+2}$ X ancestors and
@@ -510,7 +472,7 @@ have written a C and Python X genealogy simulation procedure (source code
 available in the supplement and at
 \url{https://github.com/vsbuffalo/x-ancestry/}). We simulate a female's X
 chromosome genetic ancestry back through her X genealogy. Figure
-\ref{fig:x-arc}A visualizes the X genetic ancestors of one simulated example X
+\ref{fig:x-arc} visualizes the X genetic ancestors of one simulated example X
 genealogy back nine generations to illustrate this process. Each simulation
 begins with two present-day female X chromosomes, one of which is passed to her
 mother and one to her father. Segments transmitted to a male ancestor are
@@ -582,7 +544,8 @@ way is
 For some readers, it may be useful to visualize the relationship between the
 numbers of recombinational meioses across the generations using a variant of
 Pascals triangle (Figure \ref{fig:pascals-bifib}). The sequence of
-recombinational meioses is related to a known integer sequence; see OEIS
+recombinational meioses is related to a known integer sequence; see Online
+Encyclopedia of Integer Sequences reference
 \href{https://oeis.org/A030528}{A030528} \citep{sloane2014online} for a
 description of this sequence and its other applications.
 
@@ -612,11 +575,11 @@ clarity, we first derive the number of IBD segments counted in the
 \ref{sec:auto-ancestry}), but we can adjust this simply by replacing $k$ with
 $k-1$.
 
-First, we calculate the probability of a present-day individual sharing $N$ IBD
-segments with an X genealogical ancestor $k$ generations in the past, where it
-is \emph{known} that there are $R=r$ females (and thus recombinational meioses)
-along the lineage to this ancestor. This probability uses the Poisson-Binomial
-model described in Section \ref{sec:auto-dist-ibd-seg}:
+First, we calculate the probability of a present-day individual sharing $N=n$
+IBD segments with an X genealogical ancestor $k$ generations in the past, where
+it is \emph{known} that there are $R=r$ females (and thus recombinational
+meioses) along the lineage to this ancestor. This probability uses the
+Poisson-Binomial model described in Section \ref{sec:auto-dist-ibd-seg}:
 %
 \begin{equation}
   \label{eq:likelihood-n}
@@ -663,7 +626,8 @@ In this formulation, if $k=1$, $r = 0$. In this case, the lack of
 recombinational meioses implies $b=0$, such that a present-day female shares
 $n=1$ X chromosomes with each of her two parents in the $k=1$ generation with
 certainty. These segment number distributions are visualized in Figure
-\ref{fig:x-ancestor-blockcounts} (light blue).
+\ref{fig:x-ancestor-blockcounts} (light blue lines) alongside simulated results
+(gray points).
 
 We can use our equation \eqref{eq:x-number-block} to obtain $P(N > 0)$, the
 probability that a genealogical X ancestor $k$ generations ago is a
@@ -702,12 +666,12 @@ loss of accuracy.
 
 The distribution of IBD segment lengths between a present-day female and an
 unknown X genealogical ancestor in the $k^\text{th}$ generation is similar to
-the autosomal length distribution (equation \ref{eq:auto-seg-lens}). However,
-with uncertainty about the particular lineage to the X ancestor, the number of
-recombinational meioses can vary between $\lfloor \nicefrac{k}{2} \rfloor \le r
-\le k$; we marginalize over the unknown number of recombinational meioses using
-the distribution equation \eqref{eq:recomb-pmf}. Our length density function
-is:
+the autosomal length distribution described in Appendix \ref{ap:auto-cousin}
+(equation \ref{eq:auto-seg-lens}). However, with uncertainty about the
+particular lineage to the X ancestor, the number of recombinational meioses can
+vary between $\lfloor \nicefrac{k}{2} \rfloor \le r \le k$; we marginalize over
+the unknown number of recombinational meioses using the distribution equation
+\eqref{eq:recomb-pmf}. Our length density function is:
 
 \begin{equation}
   \label{eq:x-anc-length}
@@ -898,23 +862,22 @@ $\lfloor (2k - 1)/2 \rfloor \le R \le 2k - 1$.
 Now, we derive the probability of $R=r$ females conditional on the shared
 ancestor being female, $\fsxa$. This conditional distribution differs from
 equation \eqref{eq:recomb-sanc-pmf} since it eliminates all genealogical chains
-with a male shared ancestor. 
-
-We find the distribution of recombinational meioses conditional on a female
-shared ancestor by placing the other $R'=r'$ females (the prime denotes we do
-not count the shared female ancestor here) along the two lineages of $k-1$
-individuals from the shared female ancestor down to the present-day female
-cousins. These $R'=r'$ females can be placed in both lineages by positioning
-$s$ females in the first lineage and $r'-s$ females in the second lineage,
-where $s$ follows the constraint $\lfloor (k-1)/2 \rfloor \le s \le k-1$.
-Our equation \eqref{eq:recomb-pmf} models the probability of an X genealogical
-chain having $r$ females in $k$ generations; here, we use this distribution to
-find the probabilities of $s$ females in $k-1$ generations in one lineage and
-$r'-s$ females in $k-1$ generations in the other lineage. As the number of
-females in each lineage is independent, we take the product of these
-probabilities and sum over all possible $s$; this is the discrete convolution
-of the number of females in two lineages $k-1$ generations long.  Finally, we
-account for the shared female ancestor, by the transform $R = R' + 1 = r$:
+with a male shared ancestor. We find the distribution of recombinational
+meioses conditional on a female shared ancestor by placing the other $R'=r'$
+females (the prime denotes we do not count the shared female ancestor here)
+along the two lineages of $k-1$ individuals from the shared female ancestor
+down to the present-day female cousins. These $R'=r'$ females can be placed in
+both lineages by positioning $s$ females in the first lineage and $r'-s$
+females in the second lineage, where $s$ follows the constraint $\lfloor
+(k-1)/2 \rfloor \le s \le k-1$.  Our equation \eqref{eq:recomb-pmf} models the
+probability of an X genealogical chain having $r$ females in $k$ generations;
+here, we use this distribution to find the probabilities of $s$ females in
+$k-1$ generations in one lineage and $r'-s$ females in $k-1$ generations in the
+other lineage. As the number of females in each lineage is independent, we take
+the product of these probabilities and sum over all possible $s$; this is the
+discrete convolution of the number of females in two lineages $k-1$ generations
+long.  Finally, we account for the shared female ancestor, by the transform $R
+= R' + 1 = r$:
 
 \begin{equation}
   \label{eq:prob-r-given-female}
@@ -1078,13 +1041,14 @@ number results to 5,000 genealogical simulations in Figure
 \label{sec:inf}
 
 With our IBD X segment distributions, we now turn to how these can be used to
-infer recent X ancestry. In practice, inferring the number of generations back
-to a common ancestor ($k$) is best accomplished through the signature of recent
-ancestry from the 22 autosomes, rather than through the short X chromosome. A
-number of methods are available for the task of estimating $k$ through
-autosomal IBD segments (\cite{huff2011maximum,Henn:2012ij,Durand010512}).
-Therefore, we concentrate on questions about the extra information that the X
-provides conditional on $k$ being known with certainty. 
+infer details about recent X ancestry. In practice, inferring the number of
+generations back to a common ancestor ($k$) is best accomplished through the
+signature of recent ancestry from the 22 autosomes, rather than through the
+short X chromosome. A number of methods are available for the task of
+estimating $k$ through autosomal IBD segments
+(\cite{huff2011maximum,Henn:2012ij,Durand010512}).  Therefore, we concentrate
+on questions about the extra information that the X provides conditional on $k$
+being known with certainty. 
 
 Here, we focus on two separate questions: (1) what is the probability of being
 an X genealogical ancestor given that no IBD segments are observed, and (2) can
@@ -1134,30 +1098,28 @@ two female half-cousins sharing an X ancestor but not having any X segments IBD
 by replacing $P(\text{X ancestor} \;|\; N = 0)$ with equation
 \eqref{eq:prob-n-half-cousins}, and replacing $P(\text{X ancestor})$ with
 $P(\text{shared X ancestor})$ which is given by equation
-\eqref{eq:prob-shared-x-ancestor} (blue lines). We also plot the prior
-distributions to show the answer if no information about the X chromosome was
-observed. In both cases, the lack of sharing on the X chromosome does narrow
-the field of ancestors, making those who are not X genealogical ancestors more
-likely, beyond our prior. This is especially true for close relationships
-($k<5$), where the X is likely to be shared if the ancestor was an X
-genealogical ancestor. Therefore not sharing X segments with ancestors (or
-cousins) is informative about genealogical relationships.
+\eqref{eq:prob-shared-x-ancestor}, and plotted in Figure \ref{fig:prob-xanx-n0}
+(blue lines). We also plot the prior distributions to show the answer if no
+information about the X chromosome was observed. In both cases, the lack of
+sharing on the X chromosome does narrow the field of ancestors, making those
+who are not X genealogical ancestors more likely, beyond our prior. This is
+especially true for close relationships ($k<5$), where the X is likely to be
+shared if the ancestor was an X genealogical ancestor. Therefore not sharing X
+segments with ancestors (or cousins) is informative about genealogical
+relationships.
 
-X IBD segments can be used to infer genealogical details that are not possible
-looking only at autosome IBD segments. Consequently, while IBD autosome
+Additionally, X IBD segments carry information about genealogical details that
+are not possible considering autosome IBD segments alone. While IBD autosome
 segments leave a signature of recent ancestry between two individuals, the
 uniformity of recombinational meioses across every lineage to the shared
-ancestor leaves no signal of \emph{which} genealogical lineage connects two
-present-day cousins.
-
-In contrast, X genealogical chains have two properties that leave a signature
-of which genealogical lineage connects two present-day cousins. Since the the
-number of females (and thus recombinational meioses) varies along X lineages,
-the number and length of X segments carries information about genealogical
-details not accessible through autosomal data alone--the number of females
-along a genealogical chain. This number of females $R$ is our only inferable
-summary of an X genealogical chain and constrains the possible X genealogical
-chains between these two cousins by varying amounts dependent on $R$ and $k$.
+ancestor leaves no signal of \emph{which} genealogical chain connects two
+present-day cousins. In contrast, since the number of females varies along X
+lineages and effects the number of recombination events, the number and length
+of X segments carries information about which genealogical chain connects two
+cousins. Information about the genealogical chain between cousins is summarized
+by the number of female ancestors between two cousins, $R$, and constrains the
+possible X genealogical chains between these two cousins by varying amounts
+dependent on $R$ and $k$.
 
 Our approach to inference is through the posterior distribution of $R$ given an
 observed number of IBD segments $N$ and conditioning on $k$. We calculate this
@@ -1202,7 +1164,15 @@ chain ($\lfloor (2k-1)/2 \rfloor = 5$; Figure \ref{fig:inference}).  Similarly,
 observing between three and five segments places the posterior mode over six
 females in the genealogical chain. For $k>4$, seeing zero segments provides
 little information over the prior about the relationship between the cousins,
-as sharing zero segments is the norm.
+as sharing zero segments is the norm. In each case, a posterior distribution
+over the number of females in a genealogical chain can greatly reduce the
+number of likely genealogical configurations. For example, observing $n=3$
+segments between half-cousins $k=6$ generations back leads to a \emph{maximum a
+posteriori} estimate of $\hat{R}_{\text{MAP}} = 6$ recombinational meioses
+(females) along the genealogical chain. This estimate of $\hat{R}_{\text{MAP}}
+= 6$ leads ${6 + 1 \choose 2\cdot6 - 1} = 21$ out of $\mathcal{F}_{2k+1} = 233$
+possible X genealogical chains being \emph{maximum a posteriori} estimates of
+the chain that connects the two half-cousins.
 
 
 \section{Discussion}
@@ -1232,11 +1202,11 @@ segment number and length use a Poisson-Binomial approximation to the
 recombination process, which match simulation results closely.
 
 Our results here not only allow X IBD segments to be used to model recent
-ancestry, but are in fact more informative about which genealogical ancestors
-individuals share than autosomal data alone. This additional information occurs
-through two avenues. First, sharing IBD segments on the X immediately reduces
-the potential genealogical ancestors two individuals share, since one's X
-ancestors are only a fraction of their possible genealogical ancestors (i.e.
+ancestry, but in fact provide qualitatively different informative about
+genealogical ancestry than autosomal data alone. This additional information
+occurs through two avenues. First, sharing IBD segments on the X immediately
+reduces the potential genealogical ancestors two individuals share, since one's
+X ancestors are only a fraction of their possible genealogical ancestors (i.e.
 $\mathcal{F}_{k+2}/2^{k}$ in the case of a present-day female). Second, the
 varying number of females in an X genealogy across lineages combined with the
 fact that recombinational meioses only occur in females to some extent leave a
@@ -1254,22 +1224,28 @@ Our results should also be of use in understanding patterns of admixture on the
 X chromosome. In particular our results about the posterior information from
 the number and length of X segments shared with a genealogical ancestor can
 help us understand what can be learned from the presence (or absence) of
-particular segments of particular ancestry on the X chromosome. 
+particular segments of particular ancestry on the X chromosome. As an example,
+observing autosomal segments of Swedish ancestry can be used to estimate how
+far back a Swedish ancestor was, and the presence of Swedish X chromosome
+segments narrows down the possible ancestors that this segment could be
+inherited from. Furthermore, the number of X segments of Swedish ancestry make
+certain X lineages more likely than others, through affecting the posterior
+distribution of females along a lineage. These genetic genealogical inferences
+can provide informative details in genealogy reconstruction where some
+historical genealogical information is missing or uncertain.
 
 The information about the genealogical relationship between pairs of
-individuals is inherited limited (because of the small number of segments
-shared and the stochasticity of the process); thus making full use of all
-shared segments on all chromosomes will be key to better inference 
-
-While this
-information for an individual decays somewhat quickly after a small number of
-generations, models of X chromosome segment ancestry will be useful at a
-population-level for understanding sex-biased admixture
+individuals is inherently limited (due to the small number of segments shared
+and the stochasticity of the process); thus making full use of all shared
+segments on all chromosomes will be key to better inference.  For example,
+while this information for an individual decays somewhat quickly after a small
+number of generations, models of X chromosome segment ancestry will be useful
+at a population-level for understanding sex-biased admixture
 \citep{bryc2010genome,Goldberg:2015ja,Shringarpure039347}.
 
 \section{Acknowledgements}
 
-We wish to thank Nancy Chen, Jeremy Berg, Kristin Lee, and the rest of the Coop
+We wish to thank Jeremy Berg, Nancy Chen, Kristin Lee, and the rest of the Coop
 lab for helpful discussions and feedback on earlier drafts. We also thank Amy
 Williams and the Statistical and Computational Genetics Reading Group at
 Cornell for very helpful feedback on the BioRxiv preprint version. Finally, we
@@ -1336,6 +1312,50 @@ autosomal segments (blue).}
 
 \label{fig:total-var-dist}
 \end{figure}
+
+\section{Additional Autosomal Segment Distributions}
+\label{ap:auto-cousin}
+\paragraph{The distribution of IBD segments between cousins}
+
+Similar to the distribution of autosomal segments between a present-day
+individual and an ancestor (Section \ref{sec:auto-dist-ibd-seg}), we can derive
+the distribution for the number of IBD segments shared between two half-cousins
+with an ancestor in the $k^\text{th}$ generation. Two half-cousins are
+separated by $2k$ meioses, thus the distribution for number of segments is:
+
+\begin{equation} \label{eq:auto-seg-cousins}
+ P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 1} \right)
+\end{equation}
+%
+Since either of the shared ancestor's haplotypes can be shared IBD between the
+two cousins, the Poisson process rate is doubled. Full-cousins can share segments
+via either of their two shared ancestors, leading the distribution to be:
+
+\begin{equation}
+  P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 2} \right)
+\end{equation}
+
+
+\paragraph{The distribution of autosome segment lengths}
+
+In addition to the number of IBD segments, the length of segments is also
+informative about ancestry \citep[e.g.][]{palamara2012length}. As we model
+crossing over as a Poisson process, a one Morgan region will experience on
+average $d$ recombination events over $d$ meioses. Therefore, the probability
+density of segment lengths shared IBD between two individuals $d$ meioses apart
+is exponential with rate $d$:
+
+\begin{equation}
+  \label{eq:auto-seg-lens}
+  p(U=u | d) = d e^{-du}
+\end{equation}
+
+Equations \eqref{eq:auto-seg-lens} and \eqref{eq:auto-seg-cousins} specify a
+model of the number and lengths of segments shared between various degree
+relatives. Various authors have used these types of results to derive
+likelihood-based models for classifying the genealogical relationship between
+pairs of individuals using autosome IBD data
+\citep{huff2011maximum,Henn:2012ij,Durand010512}. 
 
 \section{Generating Function for Recombinational Meioses}
 \label{ap:generating-function}
