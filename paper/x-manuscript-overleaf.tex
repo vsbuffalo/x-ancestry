@@ -935,9 +935,9 @@ $P(N = n | \msxa, R=r)$ are:
 
 \begin{align}
   P(N = n | \fsxa, R=r) =& \sum_{b=0}^\infty  \text{Pois}(B = b | \lambda = (r+1)\nu) \\ \nonumber 
-  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \tag{eq:prob-n-each-female} \\
+  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \tag{eq:prob-n-each-female} \label{eq:prob-n-each-female} \\
   P(N = n | \msxa, R=r) =& \sum_{b=0}^\infty  \text{Pois}(B = b | \lambda = r\nu) \\ \nonumber 
-  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \tag{eq:prob-n-each-male} 
+  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \tag{eq:prob-n-each-male}  \label{eq:prob-n-each-male} 
 \end{align}
 
 Since the sex of the shared ancestor depends on the number of females in the
