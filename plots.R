@@ -611,6 +611,8 @@ legend(11, 1, c("X ancestor", "X ancestor prior",
 par(opar)
 dev.off()
 
+stop()
+
 
 # ==== Thinning total variation distance
 maxk <- 10
