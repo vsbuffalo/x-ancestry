@@ -246,7 +246,7 @@ plotbifib <- function(h, cex=1, filename=NULL) {
       x <- xbuf - (length(rms)+1.5)/2 + seq_along(rms) - 0.25
       y <- ymul*k + ybuf
       lx[k+1] <- x[1]
-      ly[k+1] <- y[1]
+      ly[k+1] <- y[1] - 0.03
       text(x=xmul*x, y=y, label=rms, cex=cex, col=col, font=font)
     }
     return(list(lx, ly))
@@ -276,7 +276,7 @@ plotbifib <- function(h, cex=1, filename=NULL) {
           -(seq((h-1)/2, -(h-1)/2)[2:(h-1)] - 0.76 - xoffset),
           h/2 - 2.36,
            col='gray52', lwd=c(1, 10)[!is.null(filename) + 1L])
-  text((h-1)/2 - 1:(h-1) - 0.12, h/2-2.24, sprintf("r = %d", k:1 - 1), col='gray38',
+  text((h-1)/2 - 1:(h-1) - 0.12, h/2-2.25, sprintf("r = %d", k:1 - 1), col='gray38',
        cex=0.8*CEX)
   if (!is.null(filename)) {
     dev.off()

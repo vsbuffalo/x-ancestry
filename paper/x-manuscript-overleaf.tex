@@ -262,7 +262,7 @@ Marginalizing over the unobserved number of recombinational breakpoints $b$,
 and replacing $k$ with $k-1$ to following the convention described above:
 
 \begin{align}
-  P(N=n | k) =& \sum_{b=0}^\infty \text{Bin}(N=n \;|\; l=b+c,
+  P(N=n | k) = \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+c,
 p=\nicefrac{1}{2^{k-1}}) \\ \nonumber
 &\times \text{Pois}(B=b \;|\; \lambda=\nu (k-1)) 
 \end{align}
@@ -569,7 +569,7 @@ meioses) along the lineage to this ancestor. This probability uses the
 Poisson-Binomial model described in Section \ref{sec:auto-dist-ibd-seg}:
 %
 \begin{align}
-  P(N=n | r, k, \nu) =& \sum_{b=0}^\infty \text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber
+  P(N=n | r, k, \nu) = \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber
   &\times \text{Pois}(B=b \;|\; \lambda=\nu r)
   \label{eq:likelihood-n}
 \end{align}

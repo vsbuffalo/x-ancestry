@@ -16,6 +16,7 @@ source("dist-functions.R")
 
 LINESIZE=1.2
 GRAPH_DIR = "paper/images/"
+SINGLE_COL_CEX <- 18
 
 graphdir <- function(file, dev='eps') 
   paste(file.path(GRAPH_DIR, file), dev, sep='.')
@@ -491,7 +492,7 @@ abline(a=(1/10)*(3 - sqrt(5)), b=0, col='cornflowerblue')
 ## ====== Prob full cousins given female is X
 
 plotbifib(9)
-plotbifib(9, cex=4, filename=graphdir('bifib'))
+plotbifib(9, cex=4.8, filename=graphdir('bifib'))
 dev.off()
 
 ## ====== Alternate MC Process
@@ -554,7 +555,7 @@ lines(k, xpedcollapse(k), col='red')
 
 axs_col <- "grey38"
 title_col <- "grey10"
-cex <- 14
+cex <- SINGLE_COL_CEX
 axis_cexmul <- 1.6
 HEIGHT <- 80
 setEPS()
@@ -574,21 +575,23 @@ axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
      at=seq(0, 1, 0.2), las=1)
 mtext("generation", side=1, line=3, col=title_col, cex=cex*axis_cexmul)
 mtext("probability all ancestors distinct", side=2, line=3,
+      adj=1,
       col=title_col, cex=cex*axis_cexmul)
-legend(14, 1, c("genealogical ancestors", "X ancestors"), bty='n',
+legend(11, 1, c("genealogical ancestors", "X ancestors"), bty='n',
        cex=1.2,
        fill=cols[c(3, 5)], border=0, text.col=title_col)
 par(opar)
 dev.off()
 
 ## ==== Prob(X anc | N = 0)
+
 setEPS()
 postscript(graphdir("prob-xanc-n0"), width=phi*HEIGHT, height=HEIGHT)
 opar <- par(no.readonly=TRUE)
 cols <- wes_palette("Darjeeling")
 maxk <- 15
 maxp <- 1
-cex <- 14
+cex <- SINGLE_COL_CEX
 k <- 1:maxk
 par(mar=c(5, 5, 0, 0), cex=cex)
 plot.new()
@@ -597,6 +600,7 @@ lines(k, prob_xanc_N0(k), col=cols[3], lwd=2.1*cex, type='b', pch=20)
 lines(k, prob_x_anc(k), col=cols[3], lwd=2.1*cex, lty=2, type='b', pch=20)
 lines(k, prob_x_sharedanc_N0(k), col=cols[5], lwd=2.1*cex, type='b', pch=20)
 lines(k, prob_x_shared_anc(k), col=cols[5], lwd=2.1*cex, lty=2, type='b', pch=20)
+
 axis(1, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
      at=c(1, seq(5, maxk, 5)), labels=c(1, seq(5, maxk, 5)))
 axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
@@ -604,14 +608,12 @@ axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
 mtext("generation", side=1, line=3, col=title_col, cex=cex*axis_cexmul)
 mtext(expression(paste("P(X ancestor | ", N[x], " = 0)")),
       side=2, line=3, col=title_col, cex=cex*axis_cexmul)
-legend(11, 1, c("X ancestor", "X ancestor prior",
+legend(10, 1, c("X ancestor", "X ancestor prior",
                 "half-cousins", "half-cousins prior"),
        bty='n', lty=c(1, 2, 1, 2), lwd=axis_cexmul*cex,
        col=cols[c(3, 3, 5, 5)], border=0, text.col=title_col)
 par(opar)
 dev.off()
-
-stop()
 
 
 # ==== Thinning total variation distance
@@ -631,7 +633,7 @@ setEPS()
 postscript(graphdir("total-var-dist"), width=phi*HEIGHT, height=HEIGHT)
 opar <- par(no.readonly=TRUE)
 cols <- wes_palette("Darjeeling")
-cex <- 14
+cex <- SINGLE_COL_CEX
 par(mar=c(5, 5, 0, 0), cex=cex)
 plot.new()
 plot.window(xlim=c(0, maxk), ylim=c(0, maxp))
@@ -644,8 +646,7 @@ axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
 mtext("generation", side=1, line=3, col=title_col, cex=cex*axis_cexmul)
 mtext("total variation distance",
       side=2, line=3, col=title_col, cex=cex*axis_cexmul)
-legend(7.8, 0.94, c("X chromosome", "autosomes"), 
-       bty='n', fill=cols[c(3, 5)], border=0, text.col=title_col,
-       cex=1.2)
+legend(6.5, 0.94, c("X chromosome", "autosomes"), 
+       bty='n', fill=cols[c(3, 5)], border=0, text.col=title_col)
 par(opar)
 dev.off()
