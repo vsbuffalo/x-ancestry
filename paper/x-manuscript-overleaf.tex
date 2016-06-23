@@ -1,5 +1,6 @@
 \documentclass[9pt,twocolumn,twoside]{gsajnl}
 \RequirePackage[utf8]{inputenc}
+\RequirePackage{url}
 \RequirePackage{subcaption}
 \RequirePackage{amsmath,amssymb,amsthm}
 \RequirePackage{graphicx}
@@ -7,8 +8,8 @@
 \RequirePackage{authblk}
 \RequirePackage{bm}
 \RequirePackage{bbm}
-\usepackage{color}
-\usepackage{nicefrac}
+\RequirePackage{color}
+\RequirePackage{nicefrac}
 
 \renewcommand{\P}{\mathbb{P}}
 \newcommand{\E}{\mathbb{E}}
@@ -30,7 +31,8 @@
 
 
 
-\keywords{X chromosome, genetic genealogy, statistical genetics, identity by descent, recent ancestry}
+\keywords{X chromosome, genetic genealogy, statistical genetics, identity by
+descent, recent ancestry}
 
 \runningtitle{Models of Recent Ancestry on the X Chromosome}
 
@@ -85,14 +87,14 @@ understanding this sharing is key to many applications in biology
 recent shared ancestry is an integral part of detecting cryptic relatedness in
 genome-wide association studies \citep{gusev2009whole}, discovering
 mis-specified relationships in pedigrees \citep{sun2002enhanced}, inferring
-pairwise relationships \citep{Epstein:2000bg, glaubitz2003prospects,
-huff2011maximum}, and localizing disease traits in pedigrees
-\citep{thomas2008shared}. In forensics, recent ancestry is crucial for both
-accounting for population-level relatedness \citep{balding1994dna} and in
-familial DNA database searches \citep{belin1997summarizing,
-sjerps1999consequences}. Additionally, recent ancestry detection methods have a
-range of applications in anthropology and ancient DNA to understand the
-familial relationships among sets of individuals
+pairwise relationships
+\citep{Epstein:2000bg,glaubitz2003prospects,Huff:2011eg}, and localizing
+disease traits in pedigrees \citep{thomas2008shared}. In forensics, recent
+ancestry is crucial for both accounting for population-level relatedness
+\citep{balding1994dna} and in familial DNA database searches
+\citep{belin1997summarizing, sjerps1999consequences}. Additionally, recent
+ancestry detection methods have a range of applications in anthropology and
+ancient DNA to understand the familial relationships among sets of individuals
 \citep{Fu:2015bl,keyser2003nuclear,baca2012ancient,haak2008ancient}. In
 population genomics, recent ancestry has been used to learn about recent
 migrations and other demographic events
@@ -188,7 +190,7 @@ and explore the limits of this information.
 
 To facilitate comparison with our X chromosome results, we first briefly review
 analogous autosomal segment number and segment length distributions
-\citep{Donnelly:1983fi,thomas:1994hg,huff2011maximum}. Throughout this paper,
+\citep{Donnelly:1983fi,thomas:1994hg,Huff:2011eg}. Throughout this paper,
 we assume that one's genealogical ancestors $k$ generations back are distinct
 (e.g. there is no inbreeding), i.e. there is no pedigree collapse due to
 inbreeding (see Appendix \ref{ap:ped-collapse} for a model of how this
@@ -200,7 +202,7 @@ present-day individual solely through recombination and segregation.
 
 We model the process of crossing over during meiosis as a continuous time
 Markov process along the chromosome, as in \citet{thomas:1994hg} and
-\citet{huff2011maximum}, and described by \citet{Donnelly:1983fi}. In
+\citet{Huff:2011eg}, and described by \citet{Donnelly:1983fi}. In
 doing so we assume no crossover interference, such that in each generation $b$
 recombinational breakpoints occur as a Poisson process running with a uniform
 rate equal to the total length of the genetic map (in Morgans), $\nu$. Within a
@@ -272,7 +274,7 @@ The expected value of the Poisson-Binomial model is given by equation
 \citet{thomas:1994hg,Donnelly:1983fi}. We can further approximate this by
 assuming that we have a Poisson total number of segments with mean $(c +
 \nu(k-1))$ and these segments are shared with probability
-$\nicefrac{1}{2^{k-1}}$ as in \citet{huff2011maximum}. This gives us a
+$\nicefrac{1}{2^{k-1}}$ as in \citet{Huff:2011eg}. This gives us a
 thinned Poisson distribution of shared segments:
 
 \begin{align}
@@ -313,11 +315,11 @@ in X genealogies.
 \begin{figure*}[!ht]
     \centering
     % change 0.49 to 0.5 for vertical alignment of subfigures
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
       % \includegraphics[width=\textwidth]{images/x-arc.png}
       \includegraphics[width=\textwidth]{images/x-arc}
     \end{subfigure}
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.49\textwidth}
       \includegraphics[width=\textwidth]{images/x-tree}
     \end{subfigure}
     
@@ -345,7 +347,6 @@ in X genealogies.
 
   \begin{figure*}[!ht]
     \centering
-    % change 0.49 to 0.5 for vertical alignment of subfigures
     \includegraphics[width=\textwidth]{images/num-ancestors}
 
     \caption{A: Each line represents a present-day female's expected number of
@@ -598,12 +599,12 @@ results averaged over 5,000 simulations are the gray points.}
 
 \end{figure*}
 
-\begin{align}
-  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty \text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
-  &\times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}} \nonumber \\
-  =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty {b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \\ \nonumber
-  & \times \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
-\end{align}
+\begin{align*}
+  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
+  & &\times \; \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}} \nonumber \\
+  =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &{b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \\ \nonumber
+  & & \times \; \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
+\end{align*}
 
 For the distribution of number of IBD segments counted in the offspring, we
 substitute $k-1$ for $k$
@@ -918,12 +919,12 @@ shared ancestor nor the sex of the shared ancestor, so we marginalize over
 both. Thus, the probability of two $(k-1)^\text{th}$ degree X half-cousins
 sharing $N=n$ segments is:
 
-% \begin{align}
-%   \label{eq:prob-n-half-cousins}
-%   P(N=n | k)  =& {\sum_{r=\text{HC min}} P_{HC}(R=r | k) \\ \nonumber 
-%   &\times \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
-%   &\times \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
-% \end{align}
+\begin{align}
+  \label{eq:prob-n-half-cousins}
+  P(N=n | k)  =& \sum_{r=\text{HC min}} P_{HC}(R=r | k) \\ \nonumber 
+  &\times \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
+  &\times \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
+\end{align}
 
 As discussed in the previous section, the total number of recombinational
 meioses along the genealogical chain between half-cousins depends on the
@@ -1020,16 +1021,16 @@ convolution:
 
 \begin{align}
   \label{eq:prob-n-full-sibs}
-  P(N = n | R=r) =& \sum_{r=r_\text{FC min}}^{2k-2} \sum_{z=0}^{n} P(N = z | \fsxa) \\ \nonumber
+  P(N = n | R=r) = \sum_{r=r_\text{FC min}}^{2k-2} \sum_{z=0}^{n} & P(N = z | \fsxa) \\ \nonumber
   & \times P(N = n - z | \msxa) P_{FC}(R=r)
 \end{align}
 %
 where $r_\text{FC min} = 2\lfloor (k-2)/2\rfloor + 2$.
 %
 \begin{align}
-  P(N = n | \fsxa, R=r) =& \sum_{b=0}^\infty \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^{r+1}}) \\ \nonumber
+  P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^{r+1}}) \\ \nonumber
   &\times \text{Pois}(B=b | \lambda = \nu (r+2)) \\
-  P(N = n | \msxa, R=r) =& \sum_{b=0}^\infty \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
+  P(N = n | \msxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
   &\times \text{Pois}(B=b | \lambda = \nu r) 
 \end{align}
 %
@@ -1051,7 +1052,7 @@ generations back to a common ancestor ($k$) is best accomplished through the
 signature of recent ancestry from the 22 autosomes, rather than through the
 short X chromosome. A number of methods are available for the task of
 estimating $k$ through autosomal IBD segments
-\citep{huff2011maximum,Henn:2012ij,Durand010512}.  Therefore, we concentrate on
+\citep{Huff:2011eg,Henn:2012ij,Durand010512}.  Therefore, we concentrate on
 questions about the extra information that the X provides conditional on $k$
 being known with certainty. 
 
@@ -1204,7 +1205,7 @@ We also derive distributions for the length and number of IBD X segments by
 marginalizing over the unknown number of recombinational meioses that can occur
 between two individuals connected through a genealogical chain. In both cases,
 we condition on knowing $k$ (the generations back to a shared ancestor) which
-can be inferred from the autosomes \citep{huff2011maximum}. Our models for IBD
+can be inferred from the autosomes \citep{Huff:2011eg}. Our models for IBD
 segment number and length use a Poisson-Binomial approximation to the
 recombination process, which match simulation results closely.
 
@@ -1261,7 +1262,6 @@ RO1GM83098 and RO1GM107374 to GC.
 
 
 \bibliography{biblio}
-
 \nocite{kram2015}
 \nocite{dplyr}
 \nocite{ggplot2}
@@ -1360,7 +1360,7 @@ model of the number and lengths of segments shared between various degree
 relatives. Various authors have used these types of results to derive
 likelihood-based models for classifying the genealogical relationship between
 pairs of individuals using autosome IBD data
-\citep{huff2011maximum,Henn:2012ij,Durand010512}. 
+\citep{Huff:2011eg,Henn:2012ij,Durand010512}. 
 
 \section*{Generating Function for Recombinational Meioses}
 \label{ap:generating-function}
@@ -1480,8 +1480,8 @@ intervals) of 5,000 simulations.
 
   \caption{The analytic distributions of IBD segment length (blue lines)
   between two-present-day female half-cousins with a shared ancestor in the
-$k^\text{th}$ generation (each panel), and the binned average 5,000
-simulations (gray points).}
+  $k^\text{th}$ generation (each panel), and the binned average 5,000 simulations
+  (gray points).}
 
 \label{fig:half-cousin-x-length}
 
@@ -1533,8 +1533,5 @@ For other pedigree collapse related quantities (e.g., what's the average number
 of distinct ancestors $k$ generations back), see
 \citet{wachter2013statistical} approximations which use Feller's
 (\citeyear{feller1950introduction}) occupancy models.
-
-
-
 
 \end{document}
