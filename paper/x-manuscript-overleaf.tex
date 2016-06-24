@@ -22,22 +22,19 @@
 
 \title{A Genealogical Look at Shared Ancestry on the X Chromosome}
 
-% \author[$\ast$,$\dag$,$\ddag$,1]{Vince Buffalo}
-% \author[$\ast$,$\dag$,$\ddag$,1]{Vince Buffalo}
-% \author[$\S$]{Stephen M. Mount}
-% \author[$\dag$,$\ddag$]{Graham Coop}
-% \affil[$\ast$]{\footnotesize Population Biology Graduate Group}
-% \affil[$\dag$]{\footnotesize Center for Population Biology}
-% \affil[$\ddag$]{\footnotesize Department of Evolution and Ecology, Center for Population Biology\protect\\University of California, Davis, CA 95616}
-% \affil[$\S$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology\protect\\University of Maryland, College Park, MD 20742}
-% \affil[$1$]{\footnotesize Email for correspondence: vsbuffalo@ucdavis.edu}
+\author[$\ast$,$\dag$,1]{Vince Buffalo}
+\author[$\ddag$]{Stephen M. Mount}
+\author[$\dag$]{Graham Coop}
+\affil[$\ast$]{\footnotesize Population Biology Graduate Group}
+\affil[$\dag$]{\footnotesize Center for Population Biology, Department of Evolution and Ecology, University of California, Davis, CA 95616}
+\affil[$\ddag$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology, University of Maryland, College Park, MD 20742}
 
-\author[$\ast$,1]{Vince Buffalo}
-\author[$\dag$]{Stephen M. Mount}
-\author[$\ast$]{Graham Coop}
-\affil[$\ast$]{\footnotesize Center for Population Biology, Department of Evolution and Ecology, University of California, Davis, CA 95616}
-\affil[$\dag$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology University of Maryland, College Park, MD 20742}
-\affil[$1$]{\footnotesize Email for correspondence: vsbuffalo@ucdavis.edu}
+% \author[$\ast$,1]{Vince Buffalo}
+% \author[$\dag$]{Stephen M. Mount}
+% \author[$\ast$]{Graham Coop}
+% \affil[$\ast$]{\footnotesize Center for Population Biology, Department of Evolution and Ecology, University of California, Davis, CA 95616}
+% \affil[$\dag$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology University of Maryland, College Park, MD 20742}
+% \affil[$1$]{\footnotesize Email for correspondence: vsbuffalo@ucdavis.edu}
 
 \keywords{X chromosome, genetic genealogy, statistical genetics, identity by
 descent, recent ancestry}
@@ -331,7 +328,7 @@ in X genealogies.
     \includegraphics[width=0.9\textwidth]{images/num-ancestors}
 
     \caption{How the number of genetic and genealogical ancestors and
-      probabilities of sharing genetic material varies back through the
+      probabilities of sharing genetic material vary back through the
       generations for different cases. A: Each line represents a present-day
       female's expected number of ancestors (y-axis) in the $k^\text{th}$
       generation (x-axis; where $k=1$ is parental generation), for a variety of
@@ -371,11 +368,12 @@ generations back and eight ancestors four generations back (Figure
 
 
 In general, a present-day female's X genealogical ancestors is growing as a
-Fibonacci series \citep{laughlin1920calculating, Basin:1963wf}, such that $k$
-generations back she has $\mathcal{F}_{k+2}$ X genealogical ancestors, where
-$\mathcal{F}_k$ is the $k^\text{th}$ Fibonacci number (where $k$ is 0-indexed
-and the series begins $F_0 = 0, F_1 = 1, \ldots$; Online Encyclopedia of
-Integer Sequences reference \href{https://oeis.org/A000045}{A000045};
+Fibonacci series \citep[][see \citealt{Rosenberg9} for a historical note on
+this]{laughlin1920calculating, Basin:1963wf}, such that $k$ generations back
+she has $\mathcal{F}_{k+2}$ X genealogical ancestors, where $\mathcal{F}_k$ is
+the $k^\text{th}$ Fibonacci number (where $k$ is 0-indexed and the series
+begins $F_0 = 0, F_1 = 1, \ldots$; Online Encyclopedia of Integer Sequences
+reference \href{https://oeis.org/A000045}{A000045};
 \citeauthor{sloane2014online}, \citeyear{sloane2014online}). We can demonstrate
 that one's number of X genealogical ancestors ($n_k$) grows as a Fibonacci
 series by encoding the X inheritance rules for the number of males and females
@@ -647,13 +645,13 @@ We have also assessed the Poisson thinning approach to modeling X IBD segment
 number. As with the Poisson-Binomial model, we marginalize over $R$:
 
 \begin{align}
-  P(N=n \;|\; k, \nu) = \sum_{r=r_\text{min}}^{k-1} 
+  P(N=n \;|\; k, \nu) = \sum_{r=r_{M}}^{k-1} 
   & \text{Pois}(B=b \;|\; \lambda=(1 + \nu r)/2^r) 
  \nonumber \\  &\times \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}
   \label{eq:x-number-block-thinned}
 \end{align}
 
-where $r_\text{min} = \lfloor (k-1)/2 \rfloor$.
+where $r_{M} = \lfloor (k-1)/2 \rfloor$.
 
 In Figure \ref{fig:x-ancestor-blockcounts} we have compared the
 Poisson-Binomial and Poisson-thinning approximations for the number of IBD
@@ -859,13 +857,14 @@ connecting the two present-day female cousins follow the no two adjacent male
 condition; thus the distribution of females follows the approach used in
 equation \eqref{eq:recomb-pmf} with $k$ replaced with $2k-1$:
 
-\begin{equation} \label{eq:recomb-sanc-pmf} P_{HC}(R=r | k) = \frac{ {r+1
-\choose 2k-r-1} }{\mathcal{F}_{2k+1}} \end{equation}
+\begin{equation}
+  \label{eq:recomb-sanc-pmf} P_{H}(R=r | k) = \frac{ {r+1 \choose 2k-r-1} }{\mathcal{F}_{2k+1}}
+\end{equation}
 %
-where the $HC$ (for half-cousin) subscript differentiates this equation from
+where the $H$ (for half-cousin) subscript differentiates this equation from
 equation \eqref{eq:recomb-pmf}, $k$ is the generation of the shared ancestor.
 Similarly to equation \eqref{eq:recomb-pmf}, $r$ is bounded such that
-$r_\text{HC min} \le r \le 2k - 1$, and $r_\text{HC min} = \lfloor (2k-1)/2
+$r_{H,M} \le r \le 2k - 1$, where $r_{H,M} = \lfloor (2k-1)/2
 \rfloor$.
 
 
@@ -891,7 +890,7 @@ long.  Finally, we account for the shared female ancestor, by the transform $R
 
 \begin{equation}
   \label{eq:prob-r-given-female}
-  P_{HC}(R=r | \fsxa, k) = \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1} \frac{ {s + 1 \choose k - s - 1 } { r - s \choose k + s - r } }{(\mathcal{F}_{k+1})^2}
+  P_{H}(R=r | \fsxa, k) = \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1} \frac{ {s + 1 \choose k - s - 1 } { r - s \choose k + s - r } }{(\mathcal{F}_{k+1})^2}
 \end{equation}
 
 In general, this convolution approach allows us to find the distribution of
@@ -933,7 +932,7 @@ sharing $N=n$ segments is:
 
 \begin{align}
   \label{eq:prob-n-half-cousins}
-  P(N=n | k)  = \sum_{r=r_\text{HC min}} &P_{HC}(R=r | k)  \nonumber \\
+  P(N=n | k)  = \sum_{r=r_{H,M}}^{2k-1} &P_{H}(R=r | k)  \nonumber \\
   &\times \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
   &\times \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
 \end{align}
@@ -964,7 +963,7 @@ females in the genealogical chain is
 
 \begin{align}
   \label{eq:prob-female-given-r}
-  P_{HC}(\fsxa | R=r, k) =& \frac{\mathcal{F}_{2k-1} }{ { r+1 \choose 2k-r-1 }  \left( (\mathcal{F}_{k+1})^2 + (\mathcal{F}_k)^2 \right) }  \nonumber\\
+  P_{H}(\fsxa | R=r, k) =& \frac{\mathcal{F}_{2k-1} }{ { r+1 \choose 2k-r-1 }  \left( (\mathcal{F}_{k+1})^2 + (\mathcal{F}_k)^2 \right) }  \nonumber\\
   & \times \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1}  {s + 1 \choose k - s + 1 } { r - s \choose k + s - r }
 \end{align}
 %
@@ -1021,11 +1020,12 @@ for separately). Like equation \eqref{eq:prob-r-given-female}, this is a
 discrete convolution:
 
 \begin{equation}
-  P_{FC}(R = r, k) = \sum_{s = \lfloor (k-2)/2 \rfloor}^{k-2} \frac{{s+1 \choose k-s-2 } {r-s-1 \choose k-r+s}}{(\mathcal{F}_k)^2}
+  P_{F}(R = r, k) = \sum_{s = \lfloor (k-2)/2 \rfloor}^{k-2} \frac{{s+1 \choose k-s-2 } {r-s-1 \choose k-r+s}}{(\mathcal{F}_k)^2}
 \end{equation}
-
-This probability is valid for $r_\text{FC min} + 2 \le r \le 2k-2$ and
-is 0 elsewhere, where $r_\text{FC min} = 2\lfloor (k-2)/2\rfloor + 2$. For
+%
+where the $F$ subscript indicates this equation is for full-cousins.
+This probability is valid for $r_{F,M} + 2 \le r \le 2k-2$ and
+is 0 elsewhere, where $r_{F,M} = 2\lfloor (k-2)/2\rfloor + 2$. For
 $N=n$ segments to be shared between two X full-cousins, $z$ segments can be
 shared via the maternal shared X ancestor (where $0 \le z \le n$) and $n-z$
 segments can be shared through the paternal shared X ancestor. We marginalize
@@ -1033,8 +1033,8 @@ over all possible values of $z$, giving us another discrete convolution:
 
 \begin{align}
   \label{eq:prob-n-full-sibs}
-  P(N = n | R=r) = \sum_{r=r_\text{FC min}}^{2k-2} \sum_{z=0}^{n} & P(N = z | \fsxa)  \nonumber\\
-  & \times P(N = n - z | \msxa) P_{FC}(R=r)
+  P(N = n | R=r) = \sum_{r=r_{F,M}}^{2k-2} \sum_{z=0}^{n} & P(N = z | \fsxa)  \nonumber\\
+  & \times P(N = n - z | \msxa) P_{F}(R=r)
 \end{align}
 %
 where
