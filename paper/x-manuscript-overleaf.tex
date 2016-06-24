@@ -35,8 +35,8 @@
 \author[$\ast$,1]{Vince Buffalo}
 \author[$\dag$]{Stephen M. Mount}
 \author[$\ast$]{Graham Coop}
-\affil[$\ast$]{\footnotesize Center for Population Biology, Department of Evolution and Ecology, \protect\\University of California, Davis, CA 95616}
-\affil[$\dag$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology\protect\\University of Maryland, College Park, MD 20742}
+\affil[$\ast$]{\footnotesize Center for Population Biology, Department of Evolution and Ecology, University of California, Davis, CA 95616}
+\affil[$\dag$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology University of Maryland, College Park, MD 20742}
 \affil[$1$]{\footnotesize Email for correspondence: vsbuffalo@ucdavis.edu}
 
 \keywords{X chromosome, genetic genealogy, statistical genetics, identity by
@@ -273,7 +273,7 @@ and replacing $k$ with $k-1$ to following the convention described above:
 
 \begin{align}
   P(N=n | k) = \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+c,
-p=\nicefrac{1}{2^{k-1}}) \\ \nonumber
+p=\nicefrac{1}{2^{k-1}}) \nonumber \\ 
 &\times \text{Pois}(B=b \;|\; \lambda=\nu (k-1)) 
 \end{align}
 
@@ -320,34 +320,6 @@ take a closer look at X genealogies in the next section, we adapt the models
 above to handle the varying-rate Poisson process needed to model IBD segments
 in X genealogies.
 
-\begin{figure*}[!ht]
-    \centering
-    % change 0.49 to 0.5 for vertical alignment of subfigures
-    \begin{subfigure}[b]{0.49\textwidth}
-      % \includegraphics[width=\textwidth]{images/x-arc.png}
-      \includegraphics[width=\textwidth]{images/x-arc}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.49\textwidth}
-      \includegraphics[width=\textwidth]{images/x-tree}
-    \end{subfigure}
-    
-    \caption{A: Simulated X genealogy of a present-day female, back nine
-      generations.  Each arc is an ancestor, with female ancestors colored red,
-      and male ancestors colored blue. The transparency of each arc reflects
-      the genetic contribution of this ancestor to the present-day female.
-      White arcs correspond X genealogical ancestors that share no genetic
-      material with the present-day female, and gray arcs are genealogical
-      ancestors that are not X ancestors. B: The X segments of the simulation
-      in (A), back five generations.  The maternal X lineage's segments are
-      colored red, and the paternal X segments are colored blue. A male
-      ancestor's sex chromosomes are colored dark gray (and include the Y) and
-    a female ancestor's sex chromosomes are colored light gray.}
-
-    \label{fig:x-arc}
-
-  \end{figure*}
-
-
 \section*{X Ancestry}
 \label{sec:x-ancestry}
 
@@ -355,7 +327,7 @@ in X genealogies.
 
   \begin{figure*}[!ht]
     \centering
-    \includegraphics[width=\textwidth]{images/num-ancestors}
+    \includegraphics[width=0.9\textwidth]{images/num-ancestors}
 
     \caption{A: Each line represents a present-day female's expected number of
       ancestors (y-axis) in the $k^\text{th}$ generation (x-axis; where $k=1$
@@ -429,6 +401,32 @@ simple offset can be made to handle males.
 
 %\paragraph{Proportion of X ancestors} 
 
+\begin{figure*}[!ht]
+    \centering
+    % change 0.49 to 0.5 for vertical alignment of subfigures
+    \begin{subfigure}[b]{0.49\textwidth}
+      % \includegraphics[width=\textwidth]{images/x-arc.png}
+      \includegraphics[width=\textwidth]{images/x-arc}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+      \includegraphics[width=\textwidth]{images/x-tree}
+    \end{subfigure}
+    
+    \caption{A: Simulated X genealogy of a present-day female, back nine
+      generations.  Each arc is an ancestor, with female ancestors colored red,
+      and male ancestors colored blue. The transparency of each arc reflects
+      the genetic contribution of this ancestor to the present-day female.
+      White arcs correspond X genealogical ancestors that share no genetic
+      material with the present-day female, and gray arcs are genealogical
+      ancestors that are not X ancestors. B: The X segments of the simulation
+      in (A), back five generations.  The maternal X lineage's segments are
+      colored red, and the paternal X segments are colored blue. A male
+      ancestor's sex chromosomes are colored dark gray (and include the Y) and
+    a female ancestor's sex chromosomes are colored light gray.}
+
+    \label{fig:x-arc}
+
+  \end{figure*}
 
 In Figure \ref{fig:num-ancestors}A we show the increase in the number of X
 genealogical and genetic ancestors (green and light blue) and compare these to
@@ -496,6 +494,47 @@ ancestor, how many recombinational meioses (i.e. females) lie in the lineage
 between a present day individual and this ancestor? Since IBD segment number
 and length distributions are parameterized by a rate proportional to the number
 of recombination events, this quantity is essential to our further derivations.
+Specifically, if there's uncertainty about the particular lineage between a
+present-day female and one of her X ancestors $k$ generations back (such that
+all of the $\mathcal{F}_{k+2}$ lineages to an X ancestor are equally probable),
+the number of females (thus, recombinational meioses) that occur is a random
+variable $R$. By the no two adjacent males condition, the possible number of
+females $R$ is constrained; $R$ has a lower bound of $\lfloor \nicefrac{k}{2}
+\rfloor$, which corresponds to male-female alternation each generation to an
+ancestor in the $k^\text{th}$ generation. Similarly, the upper bound of $R$ is
+$k$, since it is possible every individual along one X lineage is a female.
+Noting that an X genealogy extending back $k$ generations enumerates every
+possible way to arrange $r$ females such that none of the $k-r$ males are
+adjacent, we find that the number of ways of arranging $r$ such females this
+way is
+
+\begin{equation}
+{ r + 1 \choose k - r}.
+\end{equation}
+
+For some readers, it may be useful to visualize the relationship between the
+numbers of recombinational meioses across the generations using Pascal's
+triangle (Figure \ref{fig:pascals-bifib}). The sequence of recombinational
+meioses is related to a known integer sequence; see Online Encyclopedia of
+Integer Sequences reference \href{https://oeis.org/A030528}{A030528}
+\citep{sloane2014online} for a description of this sequence and its other
+applications.
+
+If we pick an X genealogical ancestor at random $k$ generations ago the
+probability that there are $r$ female meioses along the lineage leading to this
+ancestor is
+\begin{align}
+  \label{eq:recomb-pmf}
+  P_R(R = r | k) = \frac{{r + 1 \choose k - r}}{\mathcal{F}_{k+2}}.
+\end{align}
+
+In Appendix \ref{ap:generating-function}, we derive a generating function for
+the number of recombinational meioses. We can use this generating function to
+obtain properties of this distribution such as the expected number of
+recombinational meioses. We can show that the expected number of
+recombinational meioses converges rapidly to $\E[R] \approx
+(\nicefrac{\varphi}{\sqrt{5}}) \; k$ with increasing $k$, where $\varphi$ is
+the Golden Ratio, $\frac{1 + \sqrt{5}}{2}$.
 
 \begin{figure}[!ht]
   \centering
@@ -519,47 +558,6 @@ of recombination events, this quantity is essential to our further derivations.
 
 \end{figure}
 
-Specifically, if there's uncertainty about the particular lineage between a
-present-day female and one of her X ancestors $k$ generations back (such that
-all of the $\mathcal{F}_{k+2}$ lineages to an X ancestor are equally probable),
-the number of females (thus, recombinational meioses) that occur is a random
-variable $R$. By the no two adjacent males condition, the possible number of
-females $R$ is constrained; $R$ has a lower bound of $\lfloor \nicefrac{k}{2}
-\rfloor$, which corresponds to male-female alternation each generation to an
-ancestor in the $k^\text{th}$ generation. Similarly, the upper bound of $R$ is
-$k$, since it is possible every individual along one X lineage is a female.
-Noting that an X genealogy extending back $k$ generations enumerates every
-possible way to arrange $r$ females such that none of the $k-r$ males are
-adjacent, we find that the number of ways of arranging $r$ such females this
-way is
-
-\begin{equation}
-{ r + 1 \choose k - r}.
-\end{equation}
-
-For some readers, it may be useful to visualize the relationship between the
-numbers of recombinational meioses across the generations using a variant of
-Pascals triangle (Figure \ref{fig:pascals-bifib}). The sequence of
-recombinational meioses is related to a known integer sequence; see Online
-Encyclopedia of Integer Sequences reference
-\href{https://oeis.org/A030528}{A030528} \citep{sloane2014online} for a
-description of this sequence and its other applications.
-
-If we pick an X genealogical ancestor at random $k$ generations ago the
-probability that there are $r$ female meioses along the lineage leading to this
-ancestor is
-\begin{align}
-  \label{eq:recomb-pmf}
-  P_R(R = r | k) = \frac{{r + 1 \choose k - r}}{\mathcal{F}_{k+2}}.
-\end{align}
-
-In Appendix \ref{ap:generating-function}, we derive a generating function for
-the number of recombinational meioses. We can use this generating function to
-obtain properties of this distribution such as the expected number of
-recombinational meioses. We can show that the expected number of
-recombinational meioses converges rapidly to $\E[R] \approx
-(\nicefrac{\varphi}{\sqrt{5}}) \; k$ with increasing $k$, where $\varphi$ is
-the Golden Ratio, $\frac{1 + \sqrt{5}}{2}$.
 
 \paragraph{The Distribution of Number of Segments Shared with an X Ancestor}
 
@@ -578,7 +576,7 @@ meioses) along the lineage to this ancestor. This probability uses the
 Poisson-Binomial model described in Section \ref{sec:auto-dist-ibd-seg}:
 %
 \begin{align}
-  P(N=n | r, k, \nu) = \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber
+  P(N=n | r, k, \nu) = \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \nonumber \\
   &\times \text{Pois}(B=b \;|\; \lambda=\nu r)
   \label{eq:likelihood-n}
 \end{align}
@@ -608,16 +606,16 @@ results averaged over 5,000 simulations are the gray points.}
 \end{figure*}
 
 \begin{alignat*}
-  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
+  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \nonumber \\ 
   & &&\times \; \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}} \nonumber \\
-  =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&{b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \\ \nonumber
+  =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&{b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \nonumber\\ 
   & && \times \; \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
 \end{alignat*}
 
 For the distribution of number of IBD segments counted in the offspring, we
 substitute $k-1$ for $k$
 \begin{align}
-  P(N=n \;|\; k, \nu) = \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \sum_{b=0}^\infty &\text{Bin}(n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber & \times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}.
+  P(N=n \;|\; k, \nu) = \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \sum_{b=0}^\infty &\text{Bin}(n \;|\; l=b+1, p=\nicefrac{1}{2^r})  \nonumber \\& \times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}.
   \label{eq:x-number-block}
 \end{align}
 %
@@ -643,7 +641,7 @@ number. As with the Poisson-Binomial model, we marginalize over $R$:
 \begin{align}
   P(N=n \;|\; k, \nu) = \sum_{r=r_\text{min}}^{k-1} 
   & \text{Pois}(B=b \;|\; \lambda=(1 + \nu r)/2^r) 
-  \\ \nonumber &\times \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}
+ \nonumber \\  &\times \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}
   \label{eq:x-number-block-thinned}
 \end{align}
 
@@ -736,7 +734,7 @@ and male ancestors of a present-day individual in the $k^\text{th}$ generation.
 Then:
 
 \begin{align}
-  P(\text{shared X ancestor} & \; | \; \text{shared ancestor } k \text{ generations}) \\ \nonumber
+  P(\text{shared X ancestor} & \; | \; \text{shared ancestor } k \text{ generations})  \nonumber\\
   &= \frac{N_{\venus}}{2^k}\left(\frac{N_{\venus}^X}{N_{\venus}}\right)^2 + 
   \frac{N_{\mars}}{2^k}\left(\frac{N_{\mars}^X}{N_{\mars}}\right)^2 \nonumber \\
   &= \frac{1}{2}\left(\frac{\mathcal{F}_{k+1}}{2^{k-1}}\right)^2 + \frac{1}{2}\left(\frac{\mathcal{F}_k}{2^{k-1}}\right)^2
@@ -927,7 +925,7 @@ sharing $N=n$ segments is:
 
 \begin{align}
   \label{eq:prob-n-half-cousins}
-  P(N=n | k)  = \sum_{r=r_\text{HC min}} &P_{HC}(R=r | k) \\ \nonumber 
+  P(N=n | k)  = \sum_{r=r_\text{HC min}} &P_{HC}(R=r | k)  \nonumber \\
   &\times \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
   &\times \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
 \end{align}
@@ -943,9 +941,9 @@ $P(N = n | \msxa, R=r)$ are:
 
 \begin{subequations}
 \begin{align}
-  P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty  &\text{Pois}(B = b | \lambda = (r+1)\nu) \\ \nonumber 
+  P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty  &\text{Pois}(B = b | \lambda = (r+1)\nu)  \nonumber \\
   &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \label{eq:prob-n-each-female} \\
-  P(N = n | \msxa, R=r) = \sum_{b=0}^\infty  &\text{Pois}(B = b | \lambda = r\nu) \\ \nonumber 
+  P(N = n | \msxa, R=r) = \sum_{b=0}^\infty  &\text{Pois}(B = b | \lambda = r\nu)  \nonumber \\
   &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \label{eq:prob-n-each-male} 
 \end{align}
 \end{subequations}
@@ -960,7 +958,7 @@ females in the genealogical chain is
 
 \begin{align}
   \label{eq:prob-female-given-r}
-  P_{HC}(\fsxa | R=r, k) =& \frac{\mathcal{F}_{2k-1} }{ { r+1 \choose 2k-r-1 }  \left( (\mathcal{F}_{k+1})^2 + (\mathcal{F}_k)^2 \right) } \\ \nonumber
+  P_{HC}(\fsxa | R=r, k) =& \frac{\mathcal{F}_{2k-1} }{ { r+1 \choose 2k-r-1 }  \left( (\mathcal{F}_{k+1})^2 + (\mathcal{F}_k)^2 \right) }  \nonumber\\
   & \times \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1}  {s + 1 \choose k - s + 1 } { r - s \choose k + s - r }
 \end{align}
 %
@@ -1029,16 +1027,16 @@ over all possible values of $z$, giving us another discrete convolution:
 
 \begin{align}
   \label{eq:prob-n-full-sibs}
-  P(N = n | R=r) = \sum_{r=r_\text{FC min}}^{2k-2} \sum_{z=0}^{n} & P(N = z | \fsxa) \\ \nonumber
+  P(N = n | R=r) = \sum_{r=r_\text{FC min}}^{2k-2} \sum_{z=0}^{n} & P(N = z | \fsxa)  \nonumber\\
   & \times P(N = n - z | \msxa) P_{FC}(R=r)
 \end{align}
 %
 where
 %
 \begin{align}
-  P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^{r+1}}) \\ \nonumber
+  P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^{r+1}})  \nonumber\\
   &\times \text{Pois}(B=b | \lambda = \nu (r+2)) \\
-  P(N = n | \msxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
+  P(N = n | \msxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^r})  \nonumber \\
   &\times \text{Pois}(B=b | \lambda = \nu r) 
 \end{align}
 %
@@ -1101,7 +1099,7 @@ that no segments are observed, $P(\text{X ancestor} \;|\; N = 0)$:
 
 \begin{align}
   \label{eq:post-x-ancs}
-  & P(\text{X ancestor}  \;|\; N = 0) = P(\text{X ancestor}) \\ \nonumber
+  & P(\text{X ancestor}  \;|\; N = 0) = P(\text{X ancestor})  \nonumber\\
   & \times \frac{P(N = 0 \;|\; \text{X ancestor})}{P(N = 0 \;|\; \text{X ancestor})P(\text{X ancestor}) + P(\text{not X ancestor})}
 \end{align}
 
@@ -1290,8 +1288,8 @@ One can show using the law of total expectation that the Poisson-Binomial and
 Poisson model have the same expected value:
 
 \begin{align}
-  \E[N] &= \sum_{b=0}^\infty \E[N | B = b]P(B = b)\\ \nonumber
-  \E[N] &= 1/2^d \left( \sum_{b=0}^\infty b \text{Pois}(B = b) + c \sum_{b=0}^\infty \text{Pois}(B = b) \right) \\ \nonumber
+  \E[N] &= \sum_{b=0}^\infty \E[N | B = b]P(B = b) \nonumber\\
+  \E[N] &= 1/2^d \left( \sum_{b=0}^\infty b \text{Pois}(B = b) + c \sum_{b=0}^\infty \text{Pois}(B = b) \right)  \nonumber\\
   \E[N] &= \frac{1}{2^d} (\nu d + c) 
 \end{align}
 %
@@ -1301,7 +1299,7 @@ in their variance. Using Eve's law, we can show the Poisson-Binomial model has
 variance
 %
 \begin{align}
-  \V[N] &= \E_B[\V[N | B]] + \V_B[\E[N|B]] \\ \nonumber
+  \V[N] &= \E_B[\V[N | B]] + \V_B[\E[N|B]]  \nonumber\\
   \V[N] &= \frac{dv + 1}{2^d} - \frac{1}{2^{2d}}
 \end{align}
 %
@@ -1380,9 +1378,9 @@ the coefficient of the term $x^{k}$
 
 \begin{align*}
   g(x, k) = \frac{1}{2^{k+1}\sqrt{x} \sqrt{x+4}} &\left[ x \right.
-    \left(\left(R^+\right)^k - \left(R^-\right)^k\right) \\ \nonumber
+    \left(\left(R^+\right)^k - \left(R^-\right)^k\right)  \nonumber\\
     &+ \sqrt{x} \sqrt{x+4}
-    \left(\left(R^-\right)^k + \left(R^+\right)^k\right) \\ \nonumber
+    \left(\left(R^-\right)^k + \left(R^+\right)^k\right)  \nonumber\\
     &+ \left. -2 \left(R^-\right)^k+2 \left(R^+\right)^k\right]
 \end{align*}
 
@@ -1418,8 +1416,8 @@ finally, substituting (1) again gives us the desired recurrence relation
 for $n_{k,r}$:
 
 \begin{align*} 
-   n_{k,r} &= n_{k-2, r-1} + n_{k-1, r-1}
   \label{eq:recur-01}
+   n_{k,r} &= n_{k-2, r-1} + n_{k-1, r-1}
 \end{align*}
 
 We can now use generating functions \citep{wilf2013generatingfunctionology} to
@@ -1511,8 +1509,8 @@ ancestors selected from a pool of $N/2$ and $\mathcal{F}_{k+1}$ female
 ancestors selected from a pool of $N/2$ must be unique:
 
 \begin{align}
-  P(\text{X ancestors all distinct}) &= P(\text{male X ancestors unique})  \\ \nonumber
-  & \;\; \times P(\text{female X ancestors unique})\\ \nonumber
+  P(\text{X ancestors all distinct}) &= P(\text{male X ancestors unique})   \nonumber\\
+  & \;\; \times P(\text{female X ancestors unique}) \nonumber\\
                                      &= \prod_{i=1}^{\mathcal{F}_{k}} \left(1-\frac{2i}{N}\right)\prod_{j=1}^{\mathcal{F}_{k+1}} \left(1-\frac{2j}{N}\right)
 \end{align}
 
