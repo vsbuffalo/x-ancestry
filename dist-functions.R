@@ -132,11 +132,11 @@ plot_sims <- function(sims, analytic, sims2=NULL, analytic2=NULL,
       smax <- max(d[, xcol]) + smin
       da <- da[da[, xcol] <= smax, ]
     }
-    plot(d[, xcol], d[, ycol], ylim=yrng, xlim=xrng, axes=FALSE, pch=19, cex=0.8,
+    plot(d[, xcol], d[, ycol], ylim=yrng, xlim=xrng, axes=FALSE, pch=19, cex=1,
          col=pointcols[1])
     if (!is.null(sims2)) {
       d2 <- sims2[sims2$gen == k, ]
-      points(d2[, xcol], d2[, ycol], ylim=yrng, xlim=xrng, pch=19, cex=0.8,
+      points(d2[, xcol], d2[, ycol], ylim=yrng, xlim=xrng, pch=19, cex=1,
              col=pointcols[2])
     }
     lines(da[da[, xcol] <= xrng[2], xcol], 
@@ -171,8 +171,8 @@ plot_sims <- function(sims, analytic, sims2=NULL, analytic2=NULL,
     mtext(sprintf("k = %d", k), side=3, line=-2.4, col=axs_col, cex=cex*1.1)
     i <- i + 1
   }
-  mtext(xlab, side=1, outer=TRUE, line = 2.1, col=title_col, cex=cex*1.4)
-  mtext(ylab, side=2, outer=TRUE, line = 2.1, col=title_col, cex=cex*1.4)
+  mtext(xlab, side=1, outer=TRUE, line = 2.1, col=title_col, cex=cex*1.1)
+  mtext(ylab, side=2, outer=TRUE, line = 2.1, col=title_col, cex=cex*1.1)
   if (!is.null(filename)) 
     dev.off()
   on.exit(par(opar))
@@ -208,14 +208,14 @@ ll_plot <- function(x, gens, ncol=4, cex=1, margin=1.2,
     sapply(seq_along(unique(d$nblocks)), function(i) {
       n <- unique(d$nblocks)[i]
       dn <- d %>% filter(nblocks == n) %>% as.data.frame
-      lines(dn$r, dn[, coln], col=cols[i], lwd=1.4*cex, type='b', pch=19, cex=0.1*cex)
+      lines(dn$r, dn[, coln], col=cols[i], lwd=1.8*cex, type='b', pch=19, cex=0.1*cex)
     })
   if (gen == lg_gen)
     legend(rms[length(rms)-1]-0.1, 0.94, nblocks, bty='n', fill=cols, border=0, cex=0.86,
            text.col=title_col, title=title)
 
     # RMS line
-    lines(rms, recomb_meioses_pmf(2*gen-1, rms), lwd=1.4*cex, pch=19, cex=0.1*cex, 
+    lines(rms, recomb_meioses_pmf(2*gen-1, rms), lwd=1.8*cex, pch=19, cex=0.1*cex, 
           lty=2, type='b', col='gray28')
     mtext(sprintf("k = %d", gen), side=3, line=-1.8, col=axs_col, cex=cex*1.1)
   }

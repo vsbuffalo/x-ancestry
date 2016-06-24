@@ -22,14 +22,22 @@
 
 \title{A Genealogical Look at Shared Ancestry on the X Chromosome}
 
+% \author[$\ast$,$\dag$,$\ddag$,1]{Vince Buffalo}
+% \author[$\ast$,$\dag$,$\ddag$,1]{Vince Buffalo}
+% \author[$\S$]{Stephen M. Mount}
+% \author[$\dag$,$\ddag$]{Graham Coop}
+% \affil[$\ast$]{\footnotesize Population Biology Graduate Group}
+% \affil[$\dag$]{\footnotesize Center for Population Biology}
+% \affil[$\ddag$]{\footnotesize Department of Evolution and Ecology, Center for Population Biology\protect\\University of California, Davis, CA 95616}
+% \affil[$\S$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology\protect\\University of Maryland, College Park, MD 20742}
+% \affil[$1$]{\footnotesize Email for correspondence: vsbuffalo@ucdavis.edu}
+
 \author[$\ast$,1]{Vince Buffalo}
 \author[$\dag$]{Stephen M. Mount}
 \author[$\ast$]{Graham Coop}
-\affil[$\ast$]{\footnotesize Department of Evolution and Ecology, Center for Population Biology\protect\\University of California, Davis, CA 95616}
+\affil[$\ast$]{\footnotesize Center for Population Biology, Department of Evolution and Ecology, \protect\\University of California, Davis, CA 95616}
 \affil[$\dag$]{\footnotesize Department of Cell Biology and Molecular Genetics, Center for Bioinformatics and Computational Biology\protect\\University of Maryland, College Park, MD 20742}
 \affil[$1$]{\footnotesize Email for correspondence: vsbuffalo@ucdavis.edu}
-
-
 
 \keywords{X chromosome, genetic genealogy, statistical genetics, identity by
 descent, recent ancestry}
@@ -88,7 +96,7 @@ recent shared ancestry is an integral part of detecting cryptic relatedness in
 genome-wide association studies \citep{gusev2009whole}, discovering
 mis-specified relationships in pedigrees \citep{sun2002enhanced}, inferring
 pairwise relationships
-\citep{Epstein:2000bg,glaubitz2003prospects,Huff:2011eg}, and localizing
+\citep{Epstein:2000bg,glaubitz2003prospects,huff2011maximum}, and localizing
 disease traits in pedigrees \citep{thomas2008shared}. In forensics, recent
 ancestry is crucial for both accounting for population-level relatedness
 \citep{balding1994dna} and in familial DNA database searches
@@ -190,7 +198,7 @@ and explore the limits of this information.
 
 To facilitate comparison with our X chromosome results, we first briefly review
 analogous autosomal segment number and segment length distributions
-\citep{Donnelly:1983fi,thomas:1994hg,Huff:2011eg}. Throughout this paper,
+\citep{Donnelly:1983fi,thomas:1994hg,huff2011maximum}. Throughout this paper,
 we assume that one's genealogical ancestors $k$ generations back are distinct
 (e.g. there is no inbreeding), i.e. there is no pedigree collapse due to
 inbreeding (see Appendix \ref{ap:ped-collapse} for a model of how this
@@ -202,7 +210,7 @@ present-day individual solely through recombination and segregation.
 
 We model the process of crossing over during meiosis as a continuous time
 Markov process along the chromosome, as in \citet{thomas:1994hg} and
-\citet{Huff:2011eg}, and described by \citet{Donnelly:1983fi}. In
+\citet{huff2011maximum}, and described by \citet{Donnelly:1983fi}. In
 doing so we assume no crossover interference, such that in each generation $b$
 recombinational breakpoints occur as a Poisson process running with a uniform
 rate equal to the total length of the genetic map (in Morgans), $\nu$. Within a
@@ -274,7 +282,7 @@ The expected value of the Poisson-Binomial model is given by equation
 \citet{thomas:1994hg,Donnelly:1983fi}. We can further approximate this by
 assuming that we have a Poisson total number of segments with mean $(c +
 \nu(k-1))$ and these segments are shared with probability
-$\nicefrac{1}{2^{k-1}}$ as in \citet{Huff:2011eg}. This gives us a
+$\nicefrac{1}{2^{k-1}}$ as in \citet{huff2011maximum}. This gives us a
 thinned Poisson distribution of shared segments:
 
 \begin{align}
@@ -495,17 +503,17 @@ of recombination events, this quantity is essential to our further derivations.
 
   \caption{The number of individuals (black numbers) with $r$ recombinational
     meioses (each diagonal, labeled at base of triangle) for a generation $k$
-    (each row). This is a modified version of Pascal's triangle, encoding the
-    number of recombinational meioses as the binomial coefficient ${r + 1
-    \choose k - r}$. Each value is further decomposed into the number of
-    recombinational meioses from the female (red value, upper left) and male
-    (blue value, upper right) lineages. Each black value is calculated by adding
-    the black number to the left in the row above (the number of
-    recombinational meioses from the maternal side) and the black number two
-    rows directly above (the number of recombinational meioses from the
-  paternal side). The sum of each row (fixed $k$) is a Fibonacci number and the
-values in the diagonal corresponding to a fixed value of $r$ are binomial
-coefficients.}
+    (each row). This encodes the number of recombinational meioses as the
+    binomial coefficient ${r + 1 \choose k - r}$. Each value is further
+    decomposed into the number of recombinational meioses from the female (red
+    value, upper left) and male (blue value, upper right) lineages. Each black
+    value is calculated by adding the black number to the left in the row above
+    (the number of recombinational meioses from the maternal side) and the
+    black number two rows directly above (the number of recombinational meioses
+    from the paternal side). The sum of each row (fixed $k$) is a Fibonacci
+    number and the values in the diagonal corresponding to a fixed value of $r$
+    are binomial coefficients. Reading from the left side to bottom right
+    corner, Pascal's triangle is contained in the red, blue, and black numbers.}
 
   \label{fig:pascals-bifib}
 
@@ -599,17 +607,17 @@ results averaged over 5,000 simulations are the gray points.}
 
 \end{figure*}
 
-\begin{align*}
-  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
-  & &\times \; \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}} \nonumber \\
-  =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &{b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \\ \nonumber
-  & & \times \; \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
-\end{align*}
+\begin{alignat*}
+  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber 
+  & &&\times \; \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}} \nonumber \\
+  =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&{b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \\ \nonumber
+  & && \times \; \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
+\end{alignat*}
 
 For the distribution of number of IBD segments counted in the offspring, we
 substitute $k-1$ for $k$
 \begin{align}
-  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \sum_{b=0}^\infty \text{Bin}(n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber & \times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}.
+  P(N=n \;|\; k, \nu) = \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \sum_{b=0}^\infty &\text{Bin}(n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \\ \nonumber & \times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}.
   \label{eq:x-number-block}
 \end{align}
 %
@@ -633,8 +641,8 @@ We have also assessed the Poisson thinning approach to modeling X IBD segment
 number. As with the Poisson-Binomial model, we marginalize over $R$:
 
 \begin{align}
-  P(N=n \;|\; k, \nu) =& \sum_{r_\text{min}}^{k-1} 
-  \text{Pois}(B=b \;|\; \lambda=(1 + \nu r)/2^r) 
+  P(N=n \;|\; k, \nu) = \sum_{r=r_\text{min}}^{k-1} 
+  & \text{Pois}(B=b \;|\; \lambda=(1 + \nu r)/2^r) 
   \\ \nonumber &\times \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}
   \label{eq:x-number-block-thinned}
 \end{align}
@@ -877,10 +885,8 @@ long.  Finally, we account for the shared female ancestor, by the transform $R
 
 \begin{equation}
   \label{eq:prob-r-given-female}
-  P_{HC}(R=r | \fsxa, k) = \sum_{s=r_\text{HC min}}^{k-1} \frac{ {s + 1 \choose k - s - 1 } { r - s \choose k + s - r } }{(\mathcal{F}_{k+1})^2}
+  P_{HC}(R=r | \fsxa, k) = \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1} \frac{ {s + 1 \choose k - s - 1 } { r - s \choose k + s - r } }{(\mathcal{F}_{k+1})^2}
 \end{equation}
-
-where $r_\text{HC min} = \lfloor (k-1)/2 \rfloor$.
 
 In general, this convolution approach allows us to find the distribution of
 females in a genealogical chain under various constraints, and can easily be
@@ -921,10 +927,12 @@ sharing $N=n$ segments is:
 
 \begin{align}
   \label{eq:prob-n-half-cousins}
-  P(N=n | k)  =& \sum_{r=\text{HC min}} P_{HC}(R=r | k) \\ \nonumber 
+  P(N=n | k)  = \sum_{r=r_\text{HC min}} &P_{HC}(R=r | k) \\ \nonumber 
   &\times \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
   &\times \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
 \end{align}
+%
+where $r_\text{HC min} = \lfloor (2k-1)/2 \rfloor$.
 
 As discussed in the previous section, the total number of recombinational
 meioses along the genealogical chain between half-cousins depends on the
@@ -933,12 +941,14 @@ Likewise, the binomial probability also depends on the shared ancestor's sex.
 Accounting for these adjustments, the probabilities $P(N = n | \fsxa, R=r)$ and
 $P(N = n | \msxa, R=r)$ are:
 
+\begin{subequations}
 \begin{align}
-  P(N = n | \fsxa, R=r) =& \sum_{b=0}^\infty  \text{Pois}(B = b | \lambda = (r+1)\nu) \\ \nonumber 
-  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \tag{eq:prob-n-each-female} \label{eq:prob-n-each-female} \\
-  P(N = n | \msxa, R=r) =& \sum_{b=0}^\infty  \text{Pois}(B = b | \lambda = r\nu) \\ \nonumber 
-  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \tag{eq:prob-n-each-male}  \label{eq:prob-n-each-male} 
+  P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty  &\text{Pois}(B = b | \lambda = (r+1)\nu) \\ \nonumber 
+  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \label{eq:prob-n-each-female} \\
+  P(N = n | \msxa, R=r) = \sum_{b=0}^\infty  &\text{Pois}(B = b | \lambda = r\nu) \\ \nonumber 
+  &\times \text{Bin}(N=n | l = b + 1, p=\nicefrac{1}{2^r}) \label{eq:prob-n-each-male} 
 \end{align}
+\end{subequations}
 
 Since the sex of the shared ancestor depends on the number of females in the
 genealogical chain between the two cousins (e.g. if $r=2k-1$, the shared
@@ -951,7 +961,7 @@ females in the genealogical chain is
 \begin{align}
   \label{eq:prob-female-given-r}
   P_{HC}(\fsxa | R=r, k) =& \frac{\mathcal{F}_{2k-1} }{ { r+1 \choose 2k-r-1 }  \left( (\mathcal{F}_{k+1})^2 + (\mathcal{F}_k)^2 \right) } \\ \nonumber
-  & \times \sum_{s=r_\text{HC min}}^{k-1}  {s + 1 \choose k - s + 1 } { r - s \choose k + s - r }
+  & \times \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1}  {s + 1 \choose k - s + 1 } { r - s \choose k + s - r }
 \end{align}
 %
 and $P(\msxa | R=r)$ can be found as the complement of this probability.
@@ -1010,14 +1020,12 @@ discrete convolution:
   P_{FC}(R = r, k) = \sum_{s = \lfloor (k-2)/2 \rfloor}^{k-2} \frac{{s+1 \choose k-s-2 } {r-s-1 \choose k-r+s}}{(\mathcal{F}_k)^2}
 \end{equation}
 
-% This probability is valid for $r_\text{FC min} \le r \le 2k-2$ and
-%% should it be the above?
-This probability is valid for $2\lfloor (k-2)/2 \rfloor + 2 \le r \le 2k-2$ and
-is 0 elsewhere. For $N=n$ segments to be shared between two X full-cousins, $z$
-segments can be shared via the maternal shared X ancestor (where $0 \le z \le n$)
-and $n-z$ segments can be shared through the paternal shared X ancestor. We
-marginalize over all possible values of $z$, giving us another discrete
-convolution:
+This probability is valid for $r_\text{FC min} + 2 \le r \le 2k-2$ and
+is 0 elsewhere, where $r_\text{FC min} = 2\lfloor (k-2)/2\rfloor + 2$. For
+$N=n$ segments to be shared between two X full-cousins, $z$ segments can be
+shared via the maternal shared X ancestor (where $0 \le z \le n$) and $n-z$
+segments can be shared through the paternal shared X ancestor. We marginalize
+over all possible values of $z$, giving us another discrete convolution:
 
 \begin{align}
   \label{eq:prob-n-full-sibs}
@@ -1025,7 +1033,7 @@ convolution:
   & \times P(N = n - z | \msxa) P_{FC}(R=r)
 \end{align}
 %
-where $r_\text{FC min} = 2\lfloor (k-2)/2\rfloor + 2$.
+where
 %
 \begin{align}
   P(N = n | \fsxa, R=r) = \sum_{b=0}^\infty & \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^{r+1}}) \\ \nonumber
@@ -1052,7 +1060,7 @@ generations back to a common ancestor ($k$) is best accomplished through the
 signature of recent ancestry from the 22 autosomes, rather than through the
 short X chromosome. A number of methods are available for the task of
 estimating $k$ through autosomal IBD segments
-\citep{Huff:2011eg,Henn:2012ij,Durand010512}.  Therefore, we concentrate on
+\citep{huff2011maximum,Henn:2012ij,Durand010512}.  Therefore, we concentrate on
 questions about the extra information that the X provides conditional on $k$
 being known with certainty. 
 
@@ -1205,7 +1213,7 @@ We also derive distributions for the length and number of IBD X segments by
 marginalizing over the unknown number of recombinational meioses that can occur
 between two individuals connected through a genealogical chain. In both cases,
 we condition on knowing $k$ (the generations back to a shared ancestor) which
-can be inferred from the autosomes \citep{Huff:2011eg}. Our models for IBD
+can be inferred from the autosomes \citep{huff2011maximum}. Our models for IBD
 segment number and length use a Poisson-Binomial approximation to the
 recombination process, which match simulation results closely.
 
@@ -1260,17 +1268,16 @@ awarded to VB (1148897), and National Institute of General Medical
 Sciences of the National Institutes of Health under award numbers NIH
 RO1GM83098 and RO1GM107374 to GC.
 
-
 \bibliography{biblio}
-% \nocite{kram2015}
-% \nocite{dplyr}
-% \nocite{ggplot2}
-% \nocite{R}
-% \nocite{Rossum:1995:PRM:869369}
-% \nocite{C}
-% \nocite{colorspace}
-% \nocite{purrr}
-% \nocite{tidyr}
+\nocite{kram2015}
+\nocite{dplyr}
+\nocite{ggplot2}
+\nocite{R}
+\nocite{Rossum:1995:PRM:869369}
+\nocite{C}
+\nocite{colorspace}
+\nocite{purrr}
+\nocite{tidyr}
 
 \newpage
 \appendix
@@ -1294,8 +1301,7 @@ in their variance. Using Eve's law, we can show the Poisson-Binomial model has
 variance
 %
 \begin{align}
-  \label{eq:n-variance}
-  \V[N] &= \E_B[\V[N | B]] + \V_B[\E[N|B]]\\ \nonumber
+  \V[N] &= \E_B[\V[N | B]] + \V_B[\E[N|B]] \\ \nonumber
   \V[N] &= \frac{dv + 1}{2^d} - \frac{1}{2^{2d}}
 \end{align}
 %
@@ -1358,7 +1364,7 @@ model of the number and lengths of segments shared between various degree
 relatives. Various authors have used these types of results to derive
 likelihood-based models for classifying the genealogical relationship between
 pairs of individuals using autosome IBD data
-\citep{Huff:2011eg,Henn:2012ij,Durand010512}. 
+\citep{huff2011maximum,Henn:2012ij,Durand010512}. 
 
 \section*{Generating Function for Recombinational Meioses}
 \label{ap:generating-function}
@@ -1372,20 +1378,20 @@ An expansion of the generating function below encodes the number of lineages
 with $r$ females in a genealogical chain $k$ generations long ($n_{k,r}$) as
 the coefficient of the term $x^{k}$
 
-\begin{align}
+\begin{align*}
   g(x, k) = \frac{1}{2^{k+1}\sqrt{x} \sqrt{x+4}} &\left[ x \right.
     \left(\left(R^+\right)^k - \left(R^-\right)^k\right) \\ \nonumber
     &+ \sqrt{x} \sqrt{x+4}
     \left(\left(R^-\right)^k + \left(R^+\right)^k\right) \\ \nonumber
     &+ \left. -2 \left(R^-\right)^k+2 \left(R^+\right)^k\right]
-\end{align}
+\end{align*}
 
 \text{where}
 
-\begin{align}
+\begin{align*}
     R^- &= x-\sqrt{x} \sqrt{x+4}\\
     R^+ &= x+\sqrt{x} \sqrt{x+4}
-\end{align}
+\end{align*}
 
 \begin{proof}
 
@@ -1400,47 +1406,48 @@ the coefficient of the term $x^{k}$
 
 Starting from (1):
 
-\begin{align} 
+\begin{align*} 
    n_{k,r} &= m_{k,r} + f_{k,r} \\
    n_{k,r} &= f_{k-1,r} + f_{k,r} \\
    n_{k,r} &= f_{k-1,r} + f_{k-1, r-1} + m_{k-1,r-1} \\
    n_{k,r} &= f_{k-1,r} + n_{k-1, r-1} \\
    n_{k,r} &= f_{k-2, r-1} + m_{k-2,r-1} + n_{k-1, r-1} \\
-\end{align}
+\end{align*}
 
 finally, substituting (1) again gives us the desired recurrence relation
 for $n_{k,r}$:
 
-\begin{align} \label{eq:recur-01}
+\begin{align*} 
    n_{k,r} &= n_{k-2, r-1} + n_{k-1, r-1}
-\end{align}
+  \label{eq:recur-01}
+\end{align*}
 
 We can now use generating functions \citep{wilf2013generatingfunctionology} to
 tackle this recurrence. Define:
 
-\begin{equation}
+\begin{equation*}
   A_k(x) = \sum_{r \ge 0} n_{k,r} x^r
-\end{equation}
+\end{equation*}
 
 then, multiply both sides of \eqref{eq:recur-01} by $x^r$ and sum over $r$. On
 the right hand side:
 
-\begin{align}
+\begin{align*}
   &= \sum_{r \ge 0} n_{k-2, r-1} x^r + \sum_{r \ge 0} n_{k-1, r-1} x^r
-\end{align}
+\end{align*}
 
  Note that $n_{k,r} = 0$ if $r < 0$. Multiplying and dividing the second term by
  $x$ yields:
 
- \begin{align}
+ \begin{align*}
    x(n_{k-1, 0} x + n_{k-1, 1} x^2 + n_{k-1, 2} x^3 + \ldots)/x = x A_{k-1}(x) 
- \end{align}
+ \end{align*}
 
  An identical derivation works for the first term. We find:
 
- \begin{equation} \label{eq:rec-gen}
+ \begin{equation*} \label{eq:rec-gen}
    A_k(x) = xA_{k-1}(x) + xA_{k-2}(x)
- \end{equation}
+ \end{equation*}
 
 This generating function is in the form of another recurrence. We can solve
 this recurrence (i.e. with Mathematica) with the initial conditions below

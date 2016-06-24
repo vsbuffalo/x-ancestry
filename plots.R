@@ -141,9 +141,9 @@ p
 plot_sims(dfx, dfx_analytic, gens=2:7, mar=0.2, analytic2=dfx_analytic2,
           legnames=c('poisson-binomial', 'poisson thinning'))
 
-plot_sims(dfx, dfx_analytic, gens=2:7, cex=12, mar=0.2,
+plot_sims(dfx, dfx_analytic, gens=2:7, cex=13, mar=0.2,
           analytic2=dfx_analytic2,
-          lgx=3.6,
+          lgx=3.1,
           legnames=c('poisson-binomial', 'poisson thinning'),
           filename=graphdir("x-ancestor-blockcounts"))
 
@@ -176,8 +176,11 @@ p <- p + xlim(c(0, 1.95))
 # gsave(p, 'x-ancestor-blocklens')
 
 dfxl_binned <-  binlens(dfxl)
+dfxl_binned <- dfxl_binned[dfxl_binned$mid < 1.95,]
 # plot_sims(dfxl_binned, dfxl_analytic, gens=2:7, xcol='mid', ycol='prob')
-plot_sims(dfxl_binned, dfxl_analytic, gens=2:7, cex=12, xcol='mid', ycol='prob',
+plot_sims(dfxl_binned, dfxl_analytic, gens=2:7, cex=13, 
+          xrng=c(0, 1.96),
+          xcol='mid', ycol='prob',
           xlab="length of IBD segments (Morgans)", ylab="density",
           filename=graphdir("x-ancestor-blocklens"))
 
@@ -290,7 +293,7 @@ axis(2, col = title_col, col.axis = axs_col, tck=-0.018, at=yax,
 mtext("generation", side=1, line = 1.6, col=title_col, cex=CEX*1.2)
 mtext("expected number of ancestors", side=2, line = 2, col=title_col, cex=CEX*1.2)
 mtext("A", side=2, line=-1.2, las=1, at=10^(log10(10^5)*1.08), 
-      cex=1.6*CEX, col=subtitle_col, font=2)
+      cex=1.3*CEX, col=subtitle_col, font=2)
 legend(1, 90000, names(labels), bty='n', fill=cols, border=0, cex=0.82,
        text.col=title_col)
 
@@ -305,7 +308,7 @@ for (type in unique(panc_dm$variable)) {
         col=cols[i], lwd=lwd)
   sim <- dfs[[i]]
   if (!is.null(sim)) {
-      points(prob ~ gen, data=sim, cex=0.6, pch=19, col=cols[i])
+      points(prob ~ gen, data=sim, cex=0.8, pch=19, col=cols[i])
   }
   i <- i + 1
 }
@@ -315,7 +318,7 @@ axis(2, col = title_col, col.axis = axs_col, tck=-0.018, line=-1.6,
      las=1, tck=0.018, lwd=CEX)
 mtext("generation", side=1, line = 1.6, col=title_col, cex=CEX*1.2)
 mtext("probability", side=2, line=0.4, col=title_col, cex=CEX*1.2)
-mtext("B", side=2, line=-2.8, las=1, at=1.08, cex=1.6*CEX, col=subtitle_col, font=2)
+mtext("B", side=2, line=-2.8, las=1, at=1.08, cex=1.3*CEX, col=subtitle_col, font=2)
 legend(8.6, 1, plabels, bty='n', fill=cols, border=0, cex=0.82, 
        title.col=title_col)
 par(opar)
@@ -369,7 +372,7 @@ p <- p + scale_x_continuous(breaks=seq(0, 10, 2))
 
 plot_sims(dxhc, dxhc_analytic, gens=2:7)
 
-plot_sims(dxhc, dxhc_analytic, gens=2:7, cex=12, 
+plot_sims(dxhc, dxhc_analytic, gens=2:7, cex=13, 
           analytic2=dxhc_analytic2,
           filename=graphdir("x-halfcousins-blockcounts"))
 
@@ -377,6 +380,7 @@ plot_sims(dxhc, dxhc_analytic, gens=2:7, cex=12,
 ## ===== Half-Cousins Lengths
 
 dfxhcl <- read_tsv("data/x-halfcousin-lens.txt")
+dfxhcl <- dfxhcl[dfxhcl$lens < 1.95,]
 dfxhcl_analytic <- fit_analytic(seq(0, 1.95, by=0.01), 2:7,
                                 x_halfcousins_blocklen_pdf, 'mid')
 # plot_sims(binlens(dfxhcl), dfxhcl_analytic, gen=2:7, xcol='mid', ycol='prob')
@@ -391,7 +395,7 @@ plot_sims(binlens(dfxhcl, breaks=12), dfxhcl_analytic,
           xlab="length of IBD segments (Morgans)", ylab="density")
 
 plot_sims(binlens(dfxhcl, breaks=12), dfxhcl_analytic, 
-          gen=2:7, xcol='mid', ycol='prob', cex=12, xrng=c(0, 2),
+          gen=2:7, xcol='mid', ycol='prob', cex=13, xrng=c(0, 2),
           smin=0.1,
           xlab="length of IBD segments (Morgans)", ylab="density",
           filename=graphdir("x-halfcousins-blocklens"))
@@ -410,7 +414,7 @@ p
 
 plot_sims(dxfc, dxfc_analytic, gens=2:7)
 
-plot_sims(dxfc, dxfc_analytic, gens=2:7, cex=12, 
+plot_sims(dxfc, dxfc_analytic, gens=2:7, cex=13, 
           filename="paper/images/x-fullcousins-blockcounts.eps")
 
 
@@ -421,7 +425,7 @@ plot_sims(dxhc, dxhc_analytic, sims2=dxfc, analytic2=dxfc_analytic, gens=2:7)
 
 # figure for paper
 plot_sims(dxhc, dxhc_analytic, sims2=dxfc, analytic2=dxfc_analytic, gens=2:7,
-          pointcols=c('#AAC3F0', '#CFC1EE'), cex=12,
+          pointcols=c('#AAC3F0', '#CFC1EE'), cex=13,
           legnames=c('half-cousin', 'full-cousin'),
           lgx=4, lgy=0.78,
           filename=graphdir("x-full-half-blockcounts"))
@@ -457,7 +461,7 @@ dd <- data.frame(k=2:12) %>% split(.$k) %>%
 HEIGHT <- 48
 setEPS()
 postscript(graphdir("rm-posterior"), width=phi*HEIGHT, height=HEIGHT)
-ll_plot(dd, 2:7, ncol=3, cex=6, coln='post', title='number of IBD\nsegments')
+ll_plot(dd, 2:7, ncol=3, cex=7, coln='post', title='number of IBD\nsegments')
 dev.off()
 
 ## ====== Validation on RMs
@@ -555,6 +559,7 @@ lines(k, xpedcollapse(k), col='red')
 
 axs_col <- "grey38"
 title_col <- "grey10"
+lwd_mul = 2.4
 cex <- SINGLE_COL_CEX
 axis_cexmul <- 1.6
 HEIGHT <- 80
@@ -566,12 +571,13 @@ par(mar=c(5, 5, 0, 0), cex=cex)
 plot.new()
 maxk <- 20 
 k <- 1:maxk
+
 plot.window(xlim=c(0, maxk), ylim=c(0, 1))
-lines(k, pedcollapse(k), col=cols[3], lwd=2.1*cex)
-lines(k, xpedcollapse(k), col=cols[5], lwd=2.1*cex)
-axis(1, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
+lines(k, pedcollapse(k), col=cols[3], lwd=lwd_mul*cex)
+lines(k, xpedcollapse(k), col=cols[5], lwd=lwd_mul*cex)
+axis(1, col = axs_col, col.axis = axs_col, cex=2.2*cex, tck=0.018, lwd=cex,
      at=seq(0, maxk, 5), labels=seq(0, maxk, 5))
-axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
+axis(2, col = axs_col, col.axis = axs_col, cex=2.2*cex, tck=0.018, lwd=cex,
      at=seq(0, 1, 0.2), las=1)
 mtext("generation", side=1, line=3, col=title_col, cex=cex*axis_cexmul)
 mtext("probability all ancestors distinct", side=2, line=3,
@@ -592,25 +598,29 @@ cols <- wes_palette("Darjeeling")
 maxk <- 15
 maxp <- 1
 cex <- SINGLE_COL_CEX
+axis_cexmul <- 1.7
 k <- 1:maxk
 par(mar=c(5, 5, 0, 0), cex=cex)
 plot.new()
 plot.window(xlim=c(0, maxk), ylim=c(0, maxp))
-lines(k, prob_xanc_N0(k), col=cols[3], lwd=2.1*cex, type='b', pch=20)
-lines(k, prob_x_anc(k), col=cols[3], lwd=2.1*cex, lty=2, type='b', pch=20)
-lines(k, prob_x_sharedanc_N0(k), col=cols[5], lwd=2.1*cex, type='b', pch=20)
-lines(k, prob_x_shared_anc(k), col=cols[5], lwd=2.1*cex, lty=2, type='b', pch=20)
+lines(k, prob_xanc_N0(k), col=cols[3], lwd=lwd_mul*cex, type='b', pch=20)
+lines(k, prob_x_anc(k), col=cols[3], lwd=lwd_mul*cex, lty=2, type='b', pch=20)
+lines(k, prob_x_sharedanc_N0(k), col=cols[5], lwd=lwd_mul*cex, type='b', pch=20)
+lines(k, prob_x_shared_anc(k), col=cols[5], lwd=lwd_mul*cex, lty=2, type='b', pch=20)
 
-axis(1, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
+axis(1, col = axs_col, col.axis = axs_col, cex=2.2*cex, 
+     tck=0.018, lwd=cex,
      at=c(1, seq(5, maxk, 5)), labels=c(1, seq(5, maxk, 5)))
-axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
+axis(2, col = axs_col, col.axis = axs_col, cex=2.2*cex, 
+     tck=0.018, lwd=cex,
      at=seq(0, maxp, 0.2), las=1)
 mtext("generation", side=1, line=3, col=title_col, cex=cex*axis_cexmul)
 mtext(expression(paste("P(X ancestor | ", N[x], " = 0)")),
       side=2, line=3, col=title_col, cex=cex*axis_cexmul)
-legend(10, 1, c("X ancestor", "X ancestor prior",
+legend(9, 1, c("X ancestor", "X ancestor prior",
                 "half-cousins", "half-cousins prior"),
-       bty='n', lty=c(1, 2, 1, 2), lwd=axis_cexmul*cex,
+       bty='n', lty=c(1, 2, 1, 2), lwd=2*cex,
+       cex=1.2,
        col=cols[c(3, 3, 5, 5)], border=0, text.col=title_col)
 par(opar)
 dev.off()
@@ -633,20 +643,21 @@ setEPS()
 postscript(graphdir("total-var-dist"), width=phi*HEIGHT, height=HEIGHT)
 opar <- par(no.readonly=TRUE)
 cols <- wes_palette("Darjeeling")
-cex <- SINGLE_COL_CEX
+# cex <- SINGLE_COL_CEX
 par(mar=c(5, 5, 0, 0), cex=cex)
 plot.new()
 plot.window(xlim=c(0, maxk), ylim=c(0, maxp))
-lines(k, tvd, col=cols[3], lwd=2.1*cex, type='b', pch=20)
-lines(k_auto, tvd_auto, col=cols[5], lwd=2.1*cex, type='b', pch=20)
-axis(1, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
+lines(k, tvd, col=cols[3], lwd=lwd_mul*cex, type='b', pch=20)
+lines(k_auto, tvd_auto, col=cols[5], lwd=lwd_mul*cex, type='b', pch=20)
+axis(1, col = axs_col, col.axis = axs_col, cex=2.2*cex, tck=0.018, lwd=cex,
      at=c(1, seq(5, maxk, 5)), labels=c(1, seq(5, maxk, 5)))
-axis(2, col = axs_col, col.axis = axs_col, cex=2.1*cex, tck=0.018, lwd=cex,
+axis(2, col = axs_col, col.axis = axs_col, cex=2.2*cex, tck=0.018, lwd=cex,
      at=seq(0, maxp, 0.2), las=1)
 mtext("generation", side=1, line=3, col=title_col, cex=cex*axis_cexmul)
 mtext("total variation distance",
       side=2, line=3, col=title_col, cex=cex*axis_cexmul)
 legend(6.5, 0.94, c("X chromosome", "autosomes"), 
+       cex=1.2,
        bty='n', fill=cols[c(3, 5)], border=0, text.col=title_col)
 par(opar)
 dev.off()

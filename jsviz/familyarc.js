@@ -1,6 +1,6 @@
 var width = 960,
     height = 500;
-var arcwidth = 40;
+var arcwidth = 42;
 var π = Math.PI,
     φ = (1 + Math.sqrt(5))/2,
     ψ = (1 - Math.sqrt(5))/2;
@@ -251,7 +251,7 @@ d3.json("x.json", function(error, data) {
    .html("")
 
   // label for paper :-), thanks d3
-  d3.selectAll("#mainsvg").append('text').attr({'x': 50, 'y': 120, 'font-family':'sans-serif', 'font-size': '30px', 'fill':"#303030", 'font-weight':'700'}).text('A');
+  d3.selectAll("#mainsvg").append('text').attr({'x': 46, 'y': 70, 'font-family':'sans-serif', 'font-size': '42px', 'fill':"#575757", 'font-weight':'700'}).text('A');
 })
 
 

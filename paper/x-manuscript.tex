@@ -28,7 +28,7 @@
 \newcommand{\vb}[1]{{\it \color{blue} #1}}
 \newtheorem{lemma}{Lemma}
 
-\addbibresource{bib.bib}
+\addbibresource{biblio.bib}
 
 \title{A Genealogical Look at Shared Ancestry on the X Chromosome}
 
@@ -331,25 +331,26 @@ in X genealogies.
 \begin{figure}[!ht]
     \centering
     % change 0.49 to 0.5 for vertical alignment of subfigures
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.79\textwidth}
       % \includegraphics[width=\textwidth]{images/x-arc.png}
       \includegraphics[width=\textwidth]{images/x-arc}
     \end{subfigure}
-    \begin{subfigure}[b]{0.8\textwidth}
+    \begin{subfigure}[b]{0.79\textwidth}
       \includegraphics[width=\textwidth]{images/x-tree}
     \end{subfigure}
     
-    \caption{A: Simulated X genealogy of a present-day female, back nine
-      generations.  Each arc is an ancestor, with female ancestors colored red,
-      and male ancestors colored blue. The transparency of each arc reflects
-      the genetic contribution of this ancestor to the present-day female.
-      White arcs correspond X genealogical ancestors that share no genetic
-      material with the present-day female, and gray arcs are genealogical
-      ancestors that are not X ancestors. B: The X segments of the simulation
-      in (A), back five generations.  The maternal X lineage's segments are
-      colored red, and the paternal X segments are colored blue. A male
-      ancestor's sex chromosomes are colored dark gray (and include the Y) and
-    a female ancestor's sex chromosomes are colored light gray.}
+    \caption{Graphical representations of an example X chromosome genealogy.
+      A: Simulated X genealogy of a present-day female, back nine generations.
+      Each arc is an ancestor, with female ancestors colored red, and male
+      ancestors colored blue. The transparency of each arc reflects the genetic
+      contribution of this ancestor to the present-day female.  White arcs
+      correspond X genealogical ancestors that share no genetic material with
+      the present-day female, and gray arcs are genealogical ancestors that are
+      not X ancestors. B: The X segments of the simulation in (A), back five
+      generations.  The maternal X lineage's segments are colored red, and the
+      paternal X segments are colored blue. A male ancestor's sex chromosomes
+    are colored dark gray (and include the Y) and a female ancestor's sex
+  chromosomes are colored light gray.}
 
     \label{fig:x-arc}
 
@@ -504,20 +505,19 @@ of recombination events, this quantity is essential to our further derivations.
 \begin{figure}[!ht]
   \centering
   \includegraphics[width=0.7\textwidth]{images/bifib}
-
   \caption{The number of individuals (black numbers) with $r$ recombinational
     meioses (each diagonal, labeled at base of triangle) for a generation $k$
-    (each row). This is a modified version of Pascal's triangle, encoding the
-    number of recombinational meioses as the binomial coefficient ${r + 1
-    \choose k - r}$. Each value is further decomposed into the number of
-    recombinational meioses from the female (red value, upper left) and male
-    (blue value, upper right) lineages. Each black value is calculated by adding
-    the black number to the left in the row above (the number of
-    recombinational meioses from the maternal side) and the black number two
-    rows directly above (the number of recombinational meioses from the
-  paternal side). The sum of each row (fixed $k$) is a Fibonacci number and the
-values in the diagonal corresponding to a fixed value of $r$ are binomial
-coefficients.}
+    (each row). This encodes the number of recombinational meioses as the
+    binomial coefficient ${r + 1 \choose k - r}$. Each value is further
+    decomposed into the number of recombinational meioses from the female (red
+    value, upper left) and male (blue value, upper right) lineages. Each black
+    value is calculated by adding the black number to the left in the row above
+    (the number of recombinational meioses from the maternal side) and the
+    black number two rows directly above (the number of recombinational meioses
+    from the paternal side). The sum of each row (fixed $k$) is a Fibonacci
+    number and the values in the diagonal corresponding to a fixed value of $r$
+    are binomial coefficients. Reading from the left side to bottom right
+    corner, Pascal's triangle is contained in the red, blue, and black numbers.}
 
   \label{fig:pascals-bifib}
 
@@ -641,10 +641,13 @@ genealogical ancestor.
 We have also assessed the Poisson thinning approach to modeling X IBD segment
 number. As with the Poisson-Binomial model, we marginalize over $R$:
 
-\begin{equation}
+\begin{align}
+  P(N=n \;|\; k, \nu) = \sum_{r_\text{min}}^{k-1} 
+  \text{Pois}(B=b \;|\; \lambda=(1 + \nu r)/2^r) \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}
   \label{eq:x-number-block-thinned}
-  P(N=n \;|\; k, \nu) = \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \text{Pois}(B=b \;|\; \lambda=(1 + \nu r)/2^r) \; \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}
-\end{equation}
+\end{align}
+
+where $r_\text{min} = \lfloor (k-1)/2 \rfloor$.
 
 In Figure \ref{fig:x-ancestor-blockcounts} we have compared the
 Poisson-Binomial and Poisson-thinning approximations for the number of IBD
@@ -881,8 +884,9 @@ long.  Finally, we account for the shared female ancestor, by the transform $R
 
 \begin{equation}
   \label{eq:prob-r-given-female}
-  P_{HC}(R=r | \fsxa, k) = \sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1} \frac{ {s + 1 \choose k - s - 1 } { r - s \choose k + s - r } }{(\mathcal{F}_{k+1})^2}
+  P_{HC}(R=r | \fsxa, k) = \sum_{s=r_\text{min}}^{k-1} \frac{ {s + 1 \choose k - s - 1 } { r - s \choose k + s - r } }{(\mathcal{F}_{k+1})^2}
 \end{equation}
+
 
 In general, this convolution approach allows us to find the distribution of
 females in a genealogical chain under various constraints, and can easily be
@@ -921,11 +925,14 @@ shared ancestor nor the sex of the shared ancestor, so we marginalize over
 both. Thus, the probability of two $(k-1)^\text{th}$ degree X half-cousins
 sharing $N=n$ segments is:
 
+
 \begin{align}
   \label{eq:prob-n-half-cousins}
-  P(N=n | k)  = {\sum_{r=\lfloor (2k-1)/2 \rfloor}^{2k-1}} P_{HC}(R=r | k) \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
+  P(N=n | k)  =  \sum_{r=r_\text{HC min}}^{2k-1} P_{HC}(R=r | k) \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
     \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
 \end{align}
+%
+where $r_\text{HC min} = \lfloor (2k-1)/2 \rfloor$.
 
 As discussed in the previous section, the total number of recombinational
 meioses along the genealogical chain between half-cousins depends on the
@@ -950,7 +957,7 @@ females in the genealogical chain is
 \begin{equation}
   \label{eq:prob-female-given-r}
   P_{HC}(\fsxa | R=r, k) = \frac{\mathcal{F}_{2k-1} }{ { r+1 \choose 2k-r-1 }  \left( (\mathcal{F}_{k+1})^2 + (\mathcal{F}_k)^2 \right) }
-\sum_{s=\lfloor (k-1)/2 \rfloor}^{k-1}  {s + 1 \choose k - s + 1 } { r - s \choose k + s - r }
+  \sum_{s=r_\text{min}}^{k-1}  {s + 1 \choose k - s + 1 } { r - s \choose k + s - r }
 \end{equation}
 %
 and $P(\msxa | R=r)$ can be found as the complement of this probability.
@@ -1009,6 +1016,8 @@ discrete convolution:
   P_{FC}(R = r, k) = \sum_{s = \lfloor (k-2)/2 \rfloor}^{k-2} \frac{{s+1 \choose k-s-2 } {r-s-1 \choose k-r+s}}{(\mathcal{F}_k)^2}
 \end{equation}
 
+% This probability is valid for $r_\text{FC min} \le r \le 2k-2$ and
+%% should it be the above?
 This probability is valid for $2\lfloor (k-2)/2 \rfloor + 2 \le r \le 2k-2$ and
 is 0 elsewhere. For $N=n$ segments to be shared between two X full-cousins, $z$
 segments can be shared via the maternal shared X ancestor (where $0 \le z \le n$)
@@ -1018,10 +1027,10 @@ convolution:
 
 \begin{equation}
   \label{eq:prob-n-full-sibs}
-  P(N = n | R=r) = \sum_{r=2\lfloor (k-2)/2\rfloor + 2}^{2k-2} \sum_{z=0}^{n} P(N = z | \fsxa) P(N = n - z | \msxa) P_{FC}(R=r)
+  P(N = n | R=r) = \sum_{r=r_\text{FC min}}^{2k-2} \sum_{z=0}^{n} P(N = z | \fsxa) P(N = n - z | \msxa) P_{FC}(R=r)
 \end{equation}
 %
-where
+where $r_\text{FC min} = 2\lfloor (k-2)/2\rfloor + 2$, and 
 %
 \begin{align}
   P(N = n | \fsxa, R=r) &= \sum_{b=0}^\infty \text{Bin}(N=n | l = b+1, p=\nicefrac{1}{2^{r+1}}) \text{Pois}(B=b | \lambda = \nu (r+2)) \\
@@ -1062,7 +1071,7 @@ results represent best case scenarios.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/prob-xanc-n0.eps}
+  \includegraphics[width=0.5\textwidth]{images/prob-xanc-n0.eps}
 
   \caption{The probability of X ancestry given no shared X genetic material.
 Yellow solid line: the probability an individual in the $k^\text{th}$
@@ -1301,7 +1310,7 @@ in Figure \ref{fig:total-var-dist}.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.7\textwidth]{images/total-var-dist}
+  \includegraphics[width=0.5\textwidth]{images/total-var-dist}
 
   \caption{The total variation distance between the Poisson thinning and the
   Poisson-Binomial model for IBD segment number for X segments (yellow) and the
@@ -1518,7 +1527,7 @@ are not genetic ancestors.
 
 \begin{figure}[!ht]
   \centering
-  \includegraphics[width=0.6\textwidth]{images/ped-collapse}
+  \includegraphics[width=0.5\textwidth]{images/ped-collapse}
   \caption{The probability that all genealogical and X ancestors are distinct in a population of $N=100,000$.}
   \label{fig:ped-collapse}
 \end{figure}

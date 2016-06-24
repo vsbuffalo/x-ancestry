@@ -18,16 +18,16 @@ function log2(x) {
 
 function segmentsTree(config) {
   var maxanc = config.nancestors(config.maxgen);
-  var width = 960, // default 960
-      height = 460,  // default 360
+  var width = 1000, // default 960
+      height = 490,  // default 360
       bottom = 40,  // bottom margin
       //chrom_width = 90,
       chrom_x_space = width/100,
       chrom_width = width/(maxanc + 1), // you may need to tweak 2
-      chrom_height = chrom_width*0.08,
+      chrom_height = chrom_width*0.1,
       pair_space = 0.7, // faction of chrom_height
       ind_height = 1.1*(chrom_height*2 + pair_space),
-      chrom_y_space = height/(config.maxgen+1);  // also a multiplier
+      chrom_y_space = height/(config.maxgen+1) - 5;  // also a multiplier
   var delay = 1500, seg_delay = 1500;
 
   function newSVG(element) {
