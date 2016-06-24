@@ -173,6 +173,7 @@ kin-selection models involving the X chromosome
   \label{fig:x-rm-tree}
 \end{figure*}
 
+%% TODO
 In Section \ref{sec:auto-ancestry} (and in Appendix \ref{ap:auto-cousin}) we
 review models of autosomal identity by descent among relatives, on which we
 base our models of X genetic ancestry.  Then, in Section \ref{sec:x-ancestry}
@@ -605,8 +606,9 @@ results averaged over 5,000 simulations are the gray points.}
 
 \end{figure*}
 
+%% TODO 
 \begin{alignat*}
-  P(N=n \;|\; k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&\text{Bin}(N=n \;|\; l=b+1, p=\nicefrac{1}{2^r}) \nonumber \\ 
+  P(N=n | k, \nu) =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&\text{Bin}(N=n | l=b+1, p=\nicefrac{1}{2^r}) \nonumber \\ 
   & &&\times \; \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}} \nonumber \\
   =& \sum_{r=\lfloor k/2 \rfloor}^k \sum_{b=0}^\infty &&{b + 1 \choose n } \nicefrac{1}{2^{rn}}(1 - \nicefrac{1}{2^r})^{b - n + 1} \nonumber\\ 
   & && \times \; \frac{(\nu r)^b e^{-\nu r}}{b!} \; \frac{{r+1 \choose k-r}}{\mathcal{F}_{k+2}}
@@ -614,8 +616,10 @@ results averaged over 5,000 simulations are the gray points.}
 
 For the distribution of number of IBD segments counted in the offspring, we
 substitute $k-1$ for $k$
+
 \begin{align}
-  P(N=n \;|\; k, \nu) = \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \sum_{b=0}^\infty &\text{Bin}(n \;|\; l=b+1, p=\nicefrac{1}{2^r})  \nonumber \\& \times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \frac{{r+1 \choose k-r-1}}{\mathcal{F}_{k+1}}.
+  P(N=n \;|\; k, \nu) = \sum_{r=\lfloor (k-1)/2 \rfloor}^{k-1} \sum_{b=0}^\infty &\text{Bin}(n \;|\; l=b+1, p=\nicefrac{1}{2^r})  \nonumber \\& \times \text{Pois}(B=b \;|\; \lambda=\nu r) \; \nonumber \\ 
+  & \times \frac{{r+0 \choose k-r-1}}{\mathcal{F}_{k+1}}.
   \label{eq:x-number-block}
 \end{align}
 %
@@ -851,15 +855,15 @@ connecting the two present-day female cousins follow the no two adjacent male
 condition; thus the distribution of females follows the approach used in
 equation \eqref{eq:recomb-pmf} with $k$ replaced with $2k-1$:
 
-\begin{equation}
-  \label{eq:recomb-sanc-pmf}
-  P_{HC}(R=r | k) = \frac{ {r+1 \choose 2k-r-1} }{\mathcal{F}_{2k+1}}
-\end{equation}
+\begin{equation} \label{eq:recomb-sanc-pmf} P_{HC}(R=r | k) = \frac{ {r+1
+\choose 2k-r-1} }{\mathcal{F}_{2k+1}} \end{equation}
 %
 where the $HC$ (for half-cousin) subscript differentiates this equation from
-equation \eqref{eq:recomb-pmf} and $k$ is the generation of the shared
-ancestor. Similarly to equation \eqref{eq:recomb-pmf}, $R$ is bounded such that
-$\lfloor (2k - 1)/2 \rfloor \le R \le 2k - 1$.
+equation \eqref{eq:recomb-pmf}, $k$ is the generation of the shared ancestor.
+Similarly to equation \eqref{eq:recomb-pmf}, $r$ is bounded such that
+$r_\text{HC min} \le r \le 2k - 1$, and $r_\text{HC min} = \lfloor (2k-1)/2
+\rfloor$.
+
 
 Now, we derive the probability of $R=r$ females conditional on the shared
 ancestor being female, $\fsxa$. This conditional distribution differs from
@@ -929,8 +933,6 @@ sharing $N=n$ segments is:
   &\times \left[  P(N = n | \fsxa, R=r) P(\fsxa | R=r) \; + \right. \nonumber \\
   &\times \left. P(N = n | \msxa, R=r) P(\msxa | R=r) \right]
 \end{align}
-%
-where $r_\text{HC min} = \lfloor (2k-1)/2 \rfloor$.
 
 As discussed in the previous section, the total number of recombinational
 meioses along the genealogical chain between half-cousins depends on the
@@ -978,7 +980,7 @@ over 5,000 simulations.}
   \label{fig:half-cousin-segment-number}
 \end{figure*}
 
-Inserting equations \eqref{eq:prob-n-each-male}, \eqref{eq:prob-n-each-female},
+Inserting equations \eqref{eq:prob-n-each-female}, \eqref{eq:prob-n-each-male},
 and \eqref{eq:prob-female-given-r} into \eqref{eq:prob-n-half-cousins} gives us
 an expression for the distribution of IBD segment numbers between two
 half-cousins with a shared ancestor $k$ generations ago. Figure
@@ -1097,11 +1099,11 @@ as to their relationship?  To get at these issues, we can use our analytic
 approximations to calculate the probability that one is an X ancestor given
 that no segments are observed, $P(\text{X ancestor} \;|\; N = 0)$:
 
-\begin{align}
+\begin{multline}
+  P(\text{X ancestor}  \;|\; N = 0) = \\
+  \frac{P(\text{X ancestor} P(N = 0 \;|\; \text{X ancestor})}{P(N = 0 \;|\; \text{X ancestor})P(\text{X ancestor}) + P(\text{not X ancestor})}
   \label{eq:post-x-ancs}
-  & P(\text{X ancestor}  \;|\; N = 0) = P(\text{X ancestor})  \nonumber\\
-  & \times \frac{P(N = 0 \;|\; \text{X ancestor})}{P(N = 0 \;|\; \text{X ancestor})P(\text{X ancestor}) + P(\text{not X ancestor})}
-\end{align}
+\end{multline}
 
 Here, $P(N = 0  \;|\; \text{X ancestor})$ is given by equation
 \eqref{eq:x-number-block} and $P(\text{X ancestor})$ is given by equation
@@ -1287,21 +1289,21 @@ We compared the Poisson thinning approximation and the Poisson-Binomial models.
 One can show using the law of total expectation that the Poisson-Binomial and
 Poisson model have the same expected value:
 
-\begin{align}
+\begin{align*}
   \E[N] &= \sum_{b=0}^\infty \E[N | B = b]P(B = b) \nonumber\\
-  \E[N] &= 1/2^d \left( \sum_{b=0}^\infty b \text{Pois}(B = b) + c \sum_{b=0}^\infty \text{Pois}(B = b) \right)  \nonumber\\
+  \E[N] &= \frac{1}{2^d} \left( \sum_{b=0}^\infty b \text{Pois}(B = b) + c \sum_{b=0}^\infty \text{Pois}(B = b) \right)  \nonumber\\
   \E[N] &= \frac{1}{2^d} (\nu d + c) 
-\end{align}
+\end{align*}
 %
 This is the same expected value as the thinned Poisson process with rate $(\nu
 d + c)/2^d$. However, the Poisson thinning and Poisson-Binomial models differ
 in their variance. Using Eve's law, we can show the Poisson-Binomial model has
 variance
 %
-\begin{align}
+\begin{align*}
   \V[N] &= \E_B[\V[N | B]] + \V_B[\E[N|B]]  \nonumber\\
   \V[N] &= \frac{dv + 1}{2^d} - \frac{1}{2^{2d}}
-\end{align}
+\end{align*}
 %
 This differs from the thinned Poisson process variance by the term
 $\nicefrac{1}{2^{2d}}$, which grows smaller with increasing $d$. Finally, we
@@ -1330,17 +1332,18 @@ the distribution for the number of IBD segments shared between two half-cousins
 with an ancestor in the $k^\text{th}$ generation. Two half-cousins are
 separated by $2k$ meioses, thus the distribution for number of segments is:
 
-\begin{equation} \label{eq:auto-seg-cousins}
- P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 1} \right)
+\begin{equation}
+  \label{eq:auto-seg-cousins}
+  P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 1} \right)
 \end{equation}
 %
 Since either of the shared ancestor's haplotypes can be shared IBD between the
 two cousins, the Poisson process rate is doubled. Full-cousins can share segments
 via either of their two shared ancestors, leading the distribution to be:
 
-\begin{equation}
+\begin{equation*}
   P(N=n \;|\; k, \nu, c) = \text{Pois}\left(N = n \;|\; \lambda=(c + 2 k \nu)/2^{2 k - 2} \right)
-\end{equation}
+\end{equation*}
 
 
 \paragraph{The distribution of autosome segment lengths}
@@ -1396,13 +1399,17 @@ the coefficient of the term $x^{k}$
  We begin by stating some recurrences that occur from the inheritance pattern of
  X ancestry:
 
-\begin{enumerate}
-  \item $ n_{k,r} = m_{k,r} + f_{k,r} $
-  \item $ m_{k,r} = f_{k-1,r} $
-  \item $ f_{k,r} = f_{k-1, r-1} + m_{k-1,r-1} $
-\end{enumerate}
+\begin{subequations}
+  \label{eq:gen-recur}
+  \begin{align}
+    n_{k,r} &= m_{k,r} + f_{k,r} \label{eq:recur-01}\\
+    m_{k,r} &= f_{k-1,r} \label{eq:recur-02}\\
+    f_{k,r} &= f_{k-1, r-1} + m_{k-1,r-1} \label{eq:recur-03}\\
+  \end{align}
+\end{subequations}
 
-Starting from (1):
+%% TODO
+Starting from equation \eqref{eq:recur-01}:
 
 \begin{align*} 
    n_{k,r} &= m_{k,r} + f_{k,r} \\
@@ -1412,13 +1419,14 @@ Starting from (1):
    n_{k,r} &= f_{k-2, r-1} + m_{k-2,r-1} + n_{k-1, r-1} \\
 \end{align*}
 
-finally, substituting (1) again gives us the desired recurrence relation
-for $n_{k,r}$:
+%% TODO
+finally, substituting equation \eqref{eq:recur-01} again gives us the desired
+recurrence relation for $n_{k,r}$:
 
-\begin{align*} 
+\begin{equation*} 
   \label{eq:recur-01}
-   n_{k,r} &= n_{k-2, r-1} + n_{k-1, r-1}
-\end{align*}
+   n_{k,r} = n_{k-2, r-1} + n_{k-1, r-1}
+\end{equation*}
 
 We can now use generating functions \citep{wilf2013generatingfunctionology} to
 tackle this recurrence. Define:
@@ -1508,11 +1516,11 @@ individuals. For all ancestors to be distinct, all $\mathcal{F}_{k}$ male
 ancestors selected from a pool of $N/2$ and $\mathcal{F}_{k+1}$ female
 ancestors selected from a pool of $N/2$ must be unique:
 
-\begin{align}
+\begin{align*}
   P(\text{X ancestors all distinct}) &= P(\text{male X ancestors unique})   \nonumber\\
   & \;\; \times P(\text{female X ancestors unique}) \nonumber\\
                                      &= \prod_{i=1}^{\mathcal{F}_{k}} \left(1-\frac{2i}{N}\right)\prod_{j=1}^{\mathcal{F}_{k+1}} \left(1-\frac{2j}{N}\right)
-\end{align}
+\end{align*}
 
 This probability as a function of $k$ is plotted in Figure
 \ref{fig:ped-collapse}. For X ancestors, the probability that at least two
