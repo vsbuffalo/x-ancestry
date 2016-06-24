@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <script src="d3.v3.min.js" charset="utf-8"></script>
+    <style type="text/css" media="screen">
+      #mainsvg {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      .arc-male {
+        fill: #43a2ca;
+      }
+      .arc-female {
+        fill: #de2d26;
+      }
+      .highlighted {
+        fill: #333; 
+      }
+      body, #desc {
+        display: block;
+        height: 4em;
+        margin-top: 1em;
+        font-family: Helvetica;
+        color: #333;
+        text-align: center;
+      }
+      #help {
+        text-align: center;
+      }
+      #src {
+        margin-top: 4em;
+        font-family: Helvetica;
+        text-align: center;
+        color: #333;
+      }
+    </style>
+    <title>family ancestry arc</title>
+  </head>
+  <body>
+    <div id="family-arc"></div>
+    <div id="desc"></div>
+    <div id="help">loading...</div>
+    <!-- <p id="src"><a href="https://github.com/vsbuffalo/genealogyjs"><i class="fa fa-github fa-3x"></i></a></p> -->
+  </body>
+  <!-- <script src="genealogy.js" type="text/javascript" charset="utf-8"></script> -->
+  <script src="familyarc-cover.js" type="text/javascript" charset="utf-8"></script>
+</html>
