@@ -1,0 +1,9 @@
+A person has two parents, four grandparents, eight great-grandparents, etc. Due
+to the special inheritance pattern of the X chromosome, only a fraction of
+these ancestors can potentially share genetic material on the X chromosome with
+the present-day individual. We develop models for how genetic material is
+shared between individuals in this X chromosome genealogy. Since recombination
+on the non-PAR X only occurs in females, and the number of females along an X
+lineage k generations back varies, genetic material survives at different rates
+across the X genealogy. Our models help in inferring ancestry details beyond
+those possible with only autosomes.
