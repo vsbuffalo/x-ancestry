@@ -463,18 +463,17 @@ ancestor.
 In the next sections, we use stochastic simulations to verify the analytic
 approximations we derive; here we briefly describe the simulation methods. We
 have written a C and Python X genealogy simulation procedure (source code
-available in the supplement and at
-\url{https://github.com/vsbuffalo/x-ancestry/}). We simulate a female's X
-chromosome genetic ancestry back through her X genealogy. Figure
-\ref{fig:x-arc} visualizes the X genetic ancestors of one simulated example X
-genealogy back nine generations to illustrate this process. Each simulation
-begins with two present-day female X chromosomes, one of which is passed to her
-mother and one to her father. Segments transmitted to a male ancestor are
-simply passed directly back to his mother (without recombination). For segments
-passed to a female ancestor, we place a Poisson number of recombination
-breakpoints (with mean $\nu$) on the X chromosome and the segment is broken
-where it overlaps these recombination events. The first segment along the
-chromosome is randomly drawn to have been inherited from either her
+available in File S1 and at \url{https://github.com/vsbuffalo/x-ancestry/}). We
+simulate a female's X chromosome genetic ancestry back through her X genealogy.
+Figure \ref{fig:x-arc} visualizes the X genetic ancestors of one simulated
+example X genealogy back nine generations to illustrate this process. Each
+simulation begins with two present-day female X chromosomes, one of which is
+passed to her mother and one to her father. Segments transmitted to a male
+ancestor are simply passed directly back to his mother (without recombination).
+For segments passed to a female ancestor, we place a Poisson number of
+recombination breakpoints (with mean $\nu$) on the X chromosome and the segment
+is broken where it overlaps these recombination events. The first segment along
+the chromosome is randomly drawn to have been inherited from either her
 mother/father, and we alternate this choice for subsequent segments. This
 procedure repeats until the target generation back $k$ is reached. The segments
 in the $k$-generation ancestors are then summarized as either counts (number of
